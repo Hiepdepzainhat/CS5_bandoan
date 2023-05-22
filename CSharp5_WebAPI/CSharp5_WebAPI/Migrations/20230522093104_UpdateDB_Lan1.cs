@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CSharp5_WebAPI.Migrations
 {
-    public partial class AddDB : Migration
+    public partial class UpdateDB_Lan1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -94,7 +94,7 @@ namespace CSharp5_WebAPI.Migrations
                     SizeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SizeName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Desciption = table.Column<string>(type: "nvarchar(1000)", nullable: false),
-                    MultiplePeice = table.Column<int>(type: "int", nullable: false)
+                    MultiplePrice = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -106,7 +106,7 @@ namespace CSharp5_WebAPI.Migrations
                 columns: table => new
                 {
                     VoucherID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    VoutcherName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    VoucherName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     PercentageDiscount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

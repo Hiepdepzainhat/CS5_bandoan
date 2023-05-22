@@ -9,7 +9,7 @@ namespace CSharp5_WebAPI.Configuration
         public void Configure(EntityTypeBuilder<Voucher> builder)
         {
             builder.HasKey(x => x.VoucherID);
-            builder.Property(x => x.VoutcherName).HasColumnType("nvarchar(100)").IsRequired();
+            builder.Property(x => x.VoucherName).HasColumnType("nvarchar(100)").IsRequired();
             builder.Property(x => x.PercentageDiscount).HasColumnType("int").IsRequired();
 
         }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CSharp5_WebAPI.Migrations
 {
     [DbContext(typeof(CS5_DbContext))]
-    [Migration("20230521103059_AddDB")]
-    partial class AddDB
+    [Migration("20230522093104_UpdateDB_Lan1")]
+    partial class UpdateDB_Lan1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -308,7 +308,7 @@ namespace CSharp5_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int>("MultiplePeice")
+                    b.Property<int>("MultiplePrice")
                         .HasColumnType("int");
 
                     b.Property<string>("SizeName")
@@ -380,7 +380,7 @@ namespace CSharp5_WebAPI.Migrations
                     b.Property<int>("PercentageDiscount")
                         .HasColumnType("int");
 
-                    b.Property<string>("VoutcherName")
+                    b.Property<string>("VoucherName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
