@@ -306,7 +306,7 @@ namespace CSharp5_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int>("MultiplePeice")
+                    b.Property<int>("MultiplePrice")
                         .HasColumnType("int");
 
                     b.Property<string>("SizeName")
@@ -378,7 +378,7 @@ namespace CSharp5_WebAPI.Migrations
                     b.Property<int>("PercentageDiscount")
                         .HasColumnType("int");
 
-                    b.Property<string>("VoutcherName")
+                    b.Property<string>("VoucherName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 

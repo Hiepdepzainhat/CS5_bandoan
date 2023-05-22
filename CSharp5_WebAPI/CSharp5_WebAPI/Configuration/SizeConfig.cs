@@ -10,7 +10,7 @@ namespace CSharp5_WebAPI.Configuration
         {
             builder.HasKey(x => x.SizeID);
             builder.Property(x => x.SizeName).HasColumnType("nvarchar(100)").IsRequired();
-            builder.Property(x => x.MultiplePeice).HasColumnType("int").IsRequired();
+            builder.Property(x => x.MultiplePrice).HasColumnType("int").IsRequired();
             builder.Property(x => x.Desciption).HasColumnType("nvarchar(1000)");
            
         }
