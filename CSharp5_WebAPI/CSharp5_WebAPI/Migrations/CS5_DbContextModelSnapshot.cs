@@ -194,7 +194,7 @@ namespace CSharp5_WebAPI.Migrations
 
                     b.HasKey("PostID");
 
-                    b.ToTable("Post");
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("CSharp5_WebAPI.Models.Producer", b =>

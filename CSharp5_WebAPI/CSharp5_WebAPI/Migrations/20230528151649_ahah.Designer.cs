@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CSharp5_WebAPI.Migrations
 {
     [DbContext(typeof(CS5_DbContext))]
-    [Migration("20230522093104_UpdateDB_Lan1")]
-    partial class UpdateDB_Lan1
+    [Migration("20230528151649_ahah")]
+    partial class ahah
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -196,7 +196,7 @@ namespace CSharp5_WebAPI.Migrations
 
                     b.HasKey("PostID");
 
-                    b.ToTable("Post");
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("CSharp5_WebAPI.Models.Producer", b =>
