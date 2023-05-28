@@ -24,15 +24,10 @@ namespace CSharp5_WebAPI.Data
         public DbSet<Voucher> Vouchers { get; set; }
         public DbSet<National> Nationals { get; set; }
         public DbSet<Chef> Chefs { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-DAV1LO0Q\SQLEXPRESS;Initial Catalog=CS5_DoAnNhanh;Integrated Security=True");
-        }
+        
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
+       
     }
 }
