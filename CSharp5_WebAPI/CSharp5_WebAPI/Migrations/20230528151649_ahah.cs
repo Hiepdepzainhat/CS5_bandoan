@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CSharp5_WebAPI.Migrations
 {
-    public partial class UpdateDB_Lan1 : Migration
+    public partial class ahah : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,7 +48,7 @@ namespace CSharp5_WebAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Post",
+                name: "Posts",
                 columns: table => new
                 {
                     PostID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -59,7 +59,7 @@ namespace CSharp5_WebAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Post", x => x.PostID);
+                    table.PrimaryKey("PK_Posts", x => x.PostID);
                 });
 
             migrationBuilder.CreateTable(
@@ -366,7 +366,7 @@ namespace CSharp5_WebAPI.Migrations
                 name: "CartDetails");
 
             migrationBuilder.DropTable(
-                name: "Post");
+                name: "Posts");
 
             migrationBuilder.DropTable(
                 name: "Bills");
