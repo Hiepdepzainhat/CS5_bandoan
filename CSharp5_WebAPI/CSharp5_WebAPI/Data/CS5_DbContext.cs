@@ -1,4 +1,5 @@
-﻿using CSharp5_WebAPI.Models;
+﻿
+using CSharp5_Share.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -11,21 +12,22 @@ namespace CSharp5_WebAPI.Data
             
         }
         public CS5_DbContext(DbContextOptions options) : base(options) { }
-        public DbSet<Products> Productss { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Cart> Carts { get; set; }
-        public DbSet<CartDetail> CartDetails { get; set; }
-        public DbSet<Bill> Bills { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<BillDetail> BillDetails { get; set; }
-        public DbSet<Categories> Categories { get; set; }
-        public DbSet<Producer> Producers { get; set; }
-        public DbSet<Size> Sizes { get; set; }
-        public DbSet<Voucher> Vouchers { get; set; }
-        public DbSet<National> Nationals { get; set; }
-        public DbSet<Chef> Chefs { get; set; }
-        public DbSet<Post> Posts { get; set; }
-
+        public virtual  DbSet<Products> Productss { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<CartDetail> CartDetails { get; set; }
+        public virtual DbSet<Bill> Bills { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<BillDetail> BillDetails { get; set; }
+        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<Producer> Producers { get; set; }
+        //public virtual DbSet<Size> Sizes { get; set; }
+        public virtual DbSet<Voucher> Vouchers { get; set; }
+        public virtual DbSet<National> Nationals { get; set; }
+        public virtual DbSet<Chef> Chefs { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<Combo> Combos { get; set; }
+        public virtual DbSet<ComboItems> ComboItems { get; set; }
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

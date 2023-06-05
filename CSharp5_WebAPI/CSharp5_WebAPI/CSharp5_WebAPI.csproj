@@ -22,8 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\" />
     <Folder Include="IServices\" />
     <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CSharp5_Share\CSharp5_Share.csproj" />
   </ItemGroup>
 
 </Project>

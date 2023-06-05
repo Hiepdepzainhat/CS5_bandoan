@@ -1,6 +1,6 @@
 ﻿using CSharp5_WebAPI.Data;
 using CSharp5_WebAPI.IServices;
-using CSharp5_WebAPI.Models;
+using CSharp5_Share.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CSharp5_WebAPI.Services
