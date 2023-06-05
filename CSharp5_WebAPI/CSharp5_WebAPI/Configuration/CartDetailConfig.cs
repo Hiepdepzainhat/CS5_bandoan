@@ -1,4 +1,4 @@
-﻿using CSharp5_WebAPI.Models;
+﻿using CSharp5_Share.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -14,6 +14,6 @@ namespace CSharp5_WebAPI.Configuration
             builder.Property(x => x.ToTal).HasColumnType("int").IsRequired();
             builder.HasOne(x => x.Cart).WithMany(x => x.CartDetails).HasForeignKey(x => x.UserID);
             builder.HasOne(x => x.Products).WithMany(x => x.CartDetails).HasForeignKey(x => x.ProductID);
-        }
+        }   
     }
 }

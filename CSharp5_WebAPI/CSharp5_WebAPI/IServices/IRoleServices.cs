@@ -1,4 +1,4 @@
-﻿using CSharp5_WebAPI.Models;
+﻿using CSharp5_Share.Models;
 
 namespace CSharp5_WebAPI.IServices
 {

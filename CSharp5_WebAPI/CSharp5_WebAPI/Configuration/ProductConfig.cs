@@ -1,4 +1,4 @@
-﻿using CSharp5_WebAPI.Models;
+﻿using CSharp5_Share.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -22,7 +22,7 @@ namespace CSharp5_WebAPI.Configuration
             builder.HasOne(x => x.Producer).WithMany(x => x.Productss).HasForeignKey(x => x.ProducerID);
             builder.HasOne(x => x.Chef).WithMany(x => x.Products).HasForeignKey(x => x.ChefID);
             builder.HasOne(x => x.Voucher).WithMany(x => x.Productss).HasForeignKey(x => x.IdVoucher);
-            builder.HasOne(x => x.Size).WithMany(x => x.Productss).HasForeignKey(x => x.SizeID);
+            //builder.HasOne(x => x.Size).WithMany(x => x.Productss).HasForeignKey(x => x.SizeID);
 
 
         }

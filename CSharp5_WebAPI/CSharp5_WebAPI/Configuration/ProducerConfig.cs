@@ -1,4 +1,4 @@
-﻿using CSharp5_WebAPI.Models;
+﻿using CSharp5_Share.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
