@@ -3,7 +3,6 @@
     public class Combo
     {
         public Guid ComboID { get; set; }
-        public Guid? ComboItemID { get; set; }
         public string ComboName { get; set; }
         public string ImgCombo { get; set; }
         public int Price { get; set; }

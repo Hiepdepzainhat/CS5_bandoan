@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CSharp5_WebAPI.Migrations
 {
     [DbContext(typeof(CS5_DbContext))]
-    [Migration("20230605162126_updateAll")]
-    partial class updateAll
+    [Migration("20230606065841_alolo")]
+    partial class alolo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -171,9 +171,6 @@ namespace CSharp5_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ComboItemID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("ComboName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
@@ -196,6 +193,11 @@ namespace CSharp5_WebAPI.Migrations
             modelBuilder.Entity("CSharp5_Share.Models.ComboItems", b =>
                 {
                     b.Property<Guid>("ComboItemID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ComboID")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Price")
@@ -205,6 +207,8 @@ namespace CSharp5_WebAPI.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ComboItemID");
+
+                    b.HasIndex("ComboID");
 
                     b.HasIndex("ProductID");
 
@@ -483,7 +487,7 @@ namespace CSharp5_WebAPI.Migrations
                 {
                     b.HasOne("CSharp5_Share.Models.Combo", "Combo")
                         .WithMany("ComboItems")
-                        .HasForeignKey("ComboItemID")
+                        .HasForeignKey("ComboID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
