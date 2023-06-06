@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CSharp5_WebAPI.Migrations
 {
-    public partial class updateAll : Migration
+    public partial class alolo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,7 +40,6 @@ namespace CSharp5_WebAPI.Migrations
                 columns: table => new
                 {
                     ComboID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ComboItemID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ComboName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     ImgCombo = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
@@ -241,14 +240,15 @@ namespace CSharp5_WebAPI.Migrations
                 {
                     ComboItemID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ComboID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ComboItems", x => x.ComboItemID);
                     table.ForeignKey(
-                        name: "FK_ComboItems_Combos_ComboItemID",
-                        column: x => x.ComboItemID,
+                        name: "FK_ComboItems_Combos_ComboID",
+                        column: x => x.ComboID,
                         principalTable: "Combos",
                         principalColumn: "ComboID",
                         onDelete: ReferentialAction.Cascade);
@@ -349,6 +349,11 @@ namespace CSharp5_WebAPI.Migrations
                 name: "IX_CartDetails_UserID",
                 table: "CartDetails",
                 column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ComboItems_ComboID",
+                table: "ComboItems",
+                column: "ComboID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ComboItems_ProductID",
