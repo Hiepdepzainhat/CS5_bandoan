@@ -18,10 +18,10 @@ namespace CSharp5_WebAPI.Configuration
             builder.Property(x => x.Price).HasColumnType("int").IsRequired();
             builder.Property(x => x.Status).HasColumnType("int").IsRequired();
             builder.Property(x => x.Desciption).HasColumnType("nvarchar(1000)");
-            builder.HasOne(x => x.Categories).WithMany(x => x.Productss).HasForeignKey(x => x.CategoryID);
+            /*builder.HasOne(x => x.Categories).WithMany(x => x.Productss).HasForeignKey(x => x.CategoryID);
             builder.HasOne(x => x.Producer).WithMany(x => x.Productss).HasForeignKey(x => x.ProducerID);
             builder.HasOne(x => x.Chef).WithMany(x => x.Products).HasForeignKey(x => x.ChefID);
-            builder.HasOne(x => x.Voucher).WithMany(x => x.Productss).HasForeignKey(x => x.IdVoucher);
+            builder.HasOne(x => x.Voucher).WithMany(x => x.Productss).HasForeignKey(x => x.IdVoucher);*/
             //builder.HasOne(x => x.Size).WithMany(x => x.Productss).HasForeignKey(x => x.SizeID);
 
 
