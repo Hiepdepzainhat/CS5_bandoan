@@ -1,11 +1,11 @@
-﻿namespace CSharp5_Share.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CSharp5_Share.Models
 {
     public class CartDetail
     {
+        [Key]
         public Guid CDID { get; set; }
-        public Guid UserID { get; set; }
-        public Guid? ProductID { get; set; }
-        public Guid? ComboID { get; set; }
         public int Quantity { get; set; }
         public int Price { get; set; }
         public int ToTal { get; set; }
