@@ -36,10 +36,10 @@ namespace CSharp5_WebAPI.Services
             return role;
         }
 
-        public async Task<Role> PutRole(string id, Role role)
+        public async Task<Role> PutRole(string id, string rolename)
         {
             var roles = _context.Roles.FirstOrDefault(x => x.RoleID == Guid.Parse(id));
-            roles.RoleName = role.RoleName;
+            roles.RoleName = rolename;
             _context.Roles.Update(roles);
             await _context.SaveChangesAsync();
             return roles; 

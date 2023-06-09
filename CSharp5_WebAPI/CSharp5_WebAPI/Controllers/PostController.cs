@@ -14,13 +14,13 @@ namespace CSharp5_WebAPI.Controllers
         {
             _PostServices = postServices;
         }
-        [HttpGet]
+        [HttpGet("[action]")]
         public async Task<ActionResult<Post>> GetAllPost()
         {
             var posts = await _PostServices.GetAllPost();
             return Ok(posts);
         }
-        [HttpGet("{id}")]
+        [HttpGet("[action]/{id}")]
         public async Task<ActionResult<Post>> GetPost(string id)
         {
             try
@@ -37,7 +37,7 @@ namespace CSharp5_WebAPI.Controllers
                 return BadRequest();
             }
         }
-        [HttpPost]
+        [HttpPost("[action]")]
         public async Task<ActionResult<Post>> PostPost(Post post)
         {
             try
@@ -50,12 +50,12 @@ namespace CSharp5_WebAPI.Controllers
                 return BadRequest();
             }
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("[action]/{id}")]
         public async Task DeletePost(string id)
         {
             await _PostServices.DeletePost(id);
         }
-        [HttpPut("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<Post>> PutPost(string id, Post post)
         {
             try
@@ -67,7 +67,7 @@ namespace CSharp5_WebAPI.Controllers
                 }
                 else
                 {
-                    await _PostServices.PostPost(post);
+                    await _PostServices.PutPost(id,post);
                     return Ok(p);
                 }
             }

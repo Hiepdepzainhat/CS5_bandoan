@@ -6,8 +6,8 @@ namespace CSharp5_Share.Models
     {
         [Key]
         public Guid ComboItemID { get; set; }
-        public int Price { get; set; }
-        public virtual Combo Combo { get; set; }
-        public virtual Products Products { get; set; }
+        public int? Price { get; set; }
+        public virtual Combo? Combo { get; set; }
+        public virtual Products? Products { get; set; }
     }
 }

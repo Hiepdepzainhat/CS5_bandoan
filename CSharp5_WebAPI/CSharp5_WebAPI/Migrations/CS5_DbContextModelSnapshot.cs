@@ -28,16 +28,19 @@ namespace CSharp5_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreateDate")
+                    b.Property<DateTime?>("CreateDate")
+                        .IsRequired()
                         .HasColumnType("Date");
 
-                    b.Property<int>("Price")
+                    b.Property<int?>("Price")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
+                    b.Property<int?>("Status")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserID")
+                    b.Property<Guid?>("UserID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("BillID");
@@ -53,16 +56,18 @@ namespace CSharp5_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BillID")
+                    b.Property<Guid?>("BillID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Price")
+                    b.Property<int?>("Price")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ProductsProductID")
+                    b.Property<Guid?>("ProductsProductID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int?>("Quantity")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("BillDetailID");
@@ -80,8 +85,10 @@ namespace CSharp5_WebAPI.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Desciption")
-                        .IsRequired()
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
 
                     b.HasKey("UserID");
 
@@ -94,22 +101,25 @@ namespace CSharp5_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CartUserID")
+                    b.Property<Guid?>("CartUserID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ComboID")
+                    b.Property<Guid?>("ComboID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Price")
+                    b.Property<int?>("Price")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ProductsProductID")
+                    b.Property<Guid?>("ProductsProductID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int?>("Quantity")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("ToTal")
+                    b.Property<int?>("ToTal")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("CDID");
@@ -133,7 +143,8 @@ namespace CSharp5_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int>("Status")
+                    b.Property<int?>("Status")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("CategoryID");
@@ -148,7 +159,6 @@ namespace CSharp5_WebAPI.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ChefDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("ChefName")
@@ -174,10 +184,11 @@ namespace CSharp5_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("Price")
+                    b.Property<int?>("Price")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
+                    b.Property<int?>("Status")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ComboID");
@@ -191,13 +202,14 @@ namespace CSharp5_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ComboID")
+                    b.Property<Guid?>("ComboID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Price")
+                    b.Property<int?>("Price")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ProductsProductID")
+                    b.Property<Guid?>("ProductsProductID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ComboItemID");
@@ -231,19 +243,16 @@ namespace CSharp5_WebAPI.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("nvarchar(2000)");
 
-                    b.Property<DateTime>("CreateDate")
+                    b.Property<DateTime?>("CreateDate")
                         .IsUnicode(true)
                         .HasColumnType("DateTime");
 
                     b.Property<string>("ImgPost")
-                        .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("TiTlePost")
-                        .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
                     b.HasKey("PostID");
@@ -276,45 +285,51 @@ namespace CSharp5_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CategoriesCategoryID")
+                    b.Property<Guid?>("CategoriesCategoryID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ChefID")
+                    b.Property<Guid?>("ChefID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DateOfManufacture")
+                    b.Property<DateTime?>("DateOfManufacture")
+                        .IsRequired()
                         .HasColumnType("Date");
 
                     b.Property<string>("Desciption")
-                        .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int>("EntryPrice")
+                    b.Property<int?>("EntryPrice")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Expired")
+                    b.Property<DateTime?>("Expired")
+                        .IsRequired()
                         .HasColumnType("Date");
 
-                    b.Property<DateTime>("ImPortDate")
+                    b.Property<DateTime?>("ImPortDate")
+                        .IsRequired()
                         .HasColumnType("Date");
 
-                    b.Property<int>("Price")
+                    b.Property<int?>("Price")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ProducerID")
+                    b.Property<Guid?>("ProducerID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int?>("Quantity")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
+                    b.Property<int?>("Status")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<Guid>("VoucherID")
+                    b.Property<Guid?>("VouchervaVoucherID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ProductID");
@@ -325,7 +340,7 @@ namespace CSharp5_WebAPI.Migrations
 
                     b.HasIndex("ProducerID");
 
-                    b.HasIndex("VoucherID");
+                    b.HasIndex("VouchervaVoucherID");
 
                     b.ToTable("Productss");
                 });
@@ -355,18 +370,18 @@ namespace CSharp5_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime?>("DateOfBirth")
+                        .IsRequired()
                         .HasColumnType("Date");
 
                     b.Property<string>("ImgUser")
-                        .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<Guid>("NationalID")
+                    b.Property<Guid?>("NationalID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PassWord")
@@ -377,10 +392,11 @@ namespace CSharp5_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(13)");
 
-                    b.Property<Guid>("RoleID")
+                    b.Property<Guid?>("RoleID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Sex")
+                    b.Property<int?>("Sex")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("UserName")
@@ -402,7 +418,8 @@ namespace CSharp5_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("PercentageDiscount")
+                    b.Property<int?>("PercentageDiscount")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("VoucherName")
@@ -418,9 +435,7 @@ namespace CSharp5_WebAPI.Migrations
                 {
                     b.HasOne("CSharp5_Share.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserID");
 
                     b.Navigation("User");
                 });
@@ -429,15 +444,11 @@ namespace CSharp5_WebAPI.Migrations
                 {
                     b.HasOne("CSharp5_Share.Models.Bill", "Bill")
                         .WithMany()
-                        .HasForeignKey("BillID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BillID");
 
                     b.HasOne("CSharp5_Share.Models.Products", "Products")
                         .WithMany()
-                        .HasForeignKey("ProductsProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductsProductID");
 
                     b.Navigation("Bill");
 
@@ -459,21 +470,15 @@ namespace CSharp5_WebAPI.Migrations
                 {
                     b.HasOne("CSharp5_Share.Models.Cart", "Cart")
                         .WithMany()
-                        .HasForeignKey("CartUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CartUserID");
 
                     b.HasOne("CSharp5_Share.Models.Combo", "Combo")
                         .WithMany()
-                        .HasForeignKey("ComboID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ComboID");
 
                     b.HasOne("CSharp5_Share.Models.Products", "Products")
                         .WithMany()
-                        .HasForeignKey("ProductsProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductsProductID");
 
                     b.Navigation("Cart");
 
@@ -486,15 +491,11 @@ namespace CSharp5_WebAPI.Migrations
                 {
                     b.HasOne("CSharp5_Share.Models.Combo", "Combo")
                         .WithMany()
-                        .HasForeignKey("ComboID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ComboID");
 
                     b.HasOne("CSharp5_Share.Models.Products", "Products")
                         .WithMany()
-                        .HasForeignKey("ProductsProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductsProductID");
 
                     b.Navigation("Combo");
 
@@ -505,27 +506,19 @@ namespace CSharp5_WebAPI.Migrations
                 {
                     b.HasOne("CSharp5_Share.Models.Categories", "Categories")
                         .WithMany()
-                        .HasForeignKey("CategoriesCategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoriesCategoryID");
 
                     b.HasOne("CSharp5_Share.Models.Chef", "Chef")
                         .WithMany()
-                        .HasForeignKey("ChefID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ChefID");
 
                     b.HasOne("CSharp5_Share.Models.Producer", "Producer")
                         .WithMany()
-                        .HasForeignKey("ProducerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProducerID");
 
-                    b.HasOne("CSharp5_Share.Models.Voucher", "Voucher")
+                    b.HasOne("CSharp5_Share.Models.Voucher", "Voucherva")
                         .WithMany()
-                        .HasForeignKey("VoucherID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VouchervaVoucherID");
 
                     b.Navigation("Categories");
 
@@ -533,22 +526,18 @@ namespace CSharp5_WebAPI.Migrations
 
                     b.Navigation("Producer");
 
-                    b.Navigation("Voucher");
+                    b.Navigation("Voucherva");
                 });
 
             modelBuilder.Entity("CSharp5_Share.Models.User", b =>
                 {
                     b.HasOne("CSharp5_Share.Models.National", "National")
                         .WithMany()
-                        .HasForeignKey("NationalID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("NationalID");
 
                     b.HasOne("CSharp5_Share.Models.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoleID");
 
                     b.Navigation("National");
 
@@ -557,8 +546,7 @@ namespace CSharp5_WebAPI.Migrations
 
             modelBuilder.Entity("CSharp5_Share.Models.User", b =>
                 {
-                    b.Navigation("Cart")
-                        .IsRequired();
+                    b.Navigation("Cart");
                 });
 #pragma warning restore 612, 618
         }

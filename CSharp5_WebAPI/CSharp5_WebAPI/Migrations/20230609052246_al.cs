@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CSharp5_WebAPI.Migrations
 {
-    public partial class test : Migration
+    public partial class al : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,7 @@ namespace CSharp5_WebAPI.Migrations
                 {
                     ChefID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ChefName = table.Column<string>(type: "nvarchar(1000)", nullable: false),
-                    ChefDescription = table.Column<string>(type: "nvarchar(1000)", nullable: false)
+                    ChefDescription = table.Column<string>(type: "nvarchar(1000)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,7 +42,7 @@ namespace CSharp5_WebAPI.Migrations
                     ComboID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ComboName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     ImgCombo = table.Column<string>(type: "nvarchar(500)", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -67,10 +67,10 @@ namespace CSharp5_WebAPI.Migrations
                 columns: table => new
                 {
                     PostID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "DateTime", nullable: false),
-                    TiTlePost = table.Column<string>(type: "nvarchar(1000)", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(2000)", nullable: false),
-                    ImgPost = table.Column<string>(type: "nvarchar(1000)", nullable: false)
+                    CreateDate = table.Column<DateTime>(type: "DateTime", nullable: true),
+                    TiTlePost = table.Column<string>(type: "nvarchar(1000)", nullable: true),
+                    Content = table.Column<string>(type: "nvarchar(2000)", nullable: true),
+                    ImgPost = table.Column<string>(type: "nvarchar(1000)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -120,8 +120,6 @@ namespace CSharp5_WebAPI.Migrations
                 columns: table => new
                 {
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RoleID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    NationalID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(1000)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     PassWord = table.Column<string>(type: "nvarchar(100)", nullable: false),
@@ -129,7 +127,9 @@ namespace CSharp5_WebAPI.Migrations
                     Address = table.Column<string>(type: "nvarchar(1000)", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "Date", nullable: false),
                     Sex = table.Column<int>(type: "int", nullable: false),
-                    ImgUser = table.Column<string>(type: "nvarchar(1000)", nullable: false)
+                    ImgUser = table.Column<string>(type: "nvarchar(1000)", nullable: true),
+                    RoleID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    NationalID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -138,14 +138,12 @@ namespace CSharp5_WebAPI.Migrations
                         name: "FK_Users_Nationals_NationalID",
                         column: x => x.NationalID,
                         principalTable: "Nationals",
-                        principalColumn: "NationalID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "NationalID");
                     table.ForeignKey(
                         name: "FK_Users_Roles_RoleID",
                         column: x => x.RoleID,
                         principalTable: "Roles",
-                        principalColumn: "RoleID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "RoleID");
                 });
 
             migrationBuilder.CreateTable(
@@ -153,10 +151,6 @@ namespace CSharp5_WebAPI.Migrations
                 columns: table => new
                 {
                     ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CategoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProducerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ChefID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdVoucher = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ProductName = table.Column<string>(type: "nvarchar(1000)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     EntryPrice = table.Column<int>(type: "int", nullable: false),
@@ -165,32 +159,33 @@ namespace CSharp5_WebAPI.Migrations
                     ImPortDate = table.Column<DateTime>(type: "Date", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    Desciption = table.Column<string>(type: "nvarchar(1000)", nullable: false)
+                    Desciption = table.Column<string>(type: "nvarchar(1000)", nullable: true),
+                    ProducerID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    VouchervaVoucherID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CategoriesCategoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ChefID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Productss", x => x.ProductID);
                     table.ForeignKey(
-                        name: "FK_Productss_Categories_CategoryID",
-                        column: x => x.CategoryID,
+                        name: "FK_Productss_Categories_CategoriesCategoryID",
+                        column: x => x.CategoriesCategoryID,
                         principalTable: "Categories",
-                        principalColumn: "CategoryID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CategoryID");
                     table.ForeignKey(
                         name: "FK_Productss_Chefs_ChefID",
                         column: x => x.ChefID,
                         principalTable: "Chefs",
-                        principalColumn: "ChefID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ChefID");
                     table.ForeignKey(
                         name: "FK_Productss_Producers_ProducerID",
                         column: x => x.ProducerID,
                         principalTable: "Producers",
-                        principalColumn: "ProducerID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ProducerID");
                     table.ForeignKey(
-                        name: "FK_Productss_Vouchers_IdVoucher",
-                        column: x => x.IdVoucher,
+                        name: "FK_Productss_Vouchers_VouchervaVoucherID",
+                        column: x => x.VouchervaVoucherID,
                         principalTable: "Vouchers",
                         principalColumn: "VoucherID");
                 });
@@ -201,7 +196,7 @@ namespace CSharp5_WebAPI.Migrations
                 {
                     BillID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "Date", nullable: false),
-                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false)
                 },
@@ -212,8 +207,7 @@ namespace CSharp5_WebAPI.Migrations
                         name: "FK_Bills_Users_UserID",
                         column: x => x.UserID,
                         principalTable: "Users",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
@@ -221,7 +215,8 @@ namespace CSharp5_WebAPI.Migrations
                 columns: table => new
                 {
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Desciption = table.Column<string>(type: "nvarchar(1000)", nullable: false)
+                    Desciption = table.Column<string>(type: "nvarchar(1000)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -239,9 +234,9 @@ namespace CSharp5_WebAPI.Migrations
                 columns: table => new
                 {
                     ComboItemID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ComboID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false)
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    ComboID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ProductsProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -250,14 +245,12 @@ namespace CSharp5_WebAPI.Migrations
                         name: "FK_ComboItems_Combos_ComboID",
                         column: x => x.ComboID,
                         principalTable: "Combos",
-                        principalColumn: "ComboID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ComboID");
                     table.ForeignKey(
-                        name: "FK_ComboItems_Productss_ProductID",
-                        column: x => x.ProductID,
+                        name: "FK_ComboItems_Productss_ProductsProductID",
+                        column: x => x.ProductsProductID,
                         principalTable: "Productss",
-                        principalColumn: "ProductID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ProductID");
                 });
 
             migrationBuilder.CreateTable(
@@ -265,11 +258,10 @@ namespace CSharp5_WebAPI.Migrations
                 columns: table => new
                 {
                     BillDetailID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BillID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ComboID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false)
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    BillID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ProductsProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -278,11 +270,10 @@ namespace CSharp5_WebAPI.Migrations
                         name: "FK_BillDetails_Bills_BillID",
                         column: x => x.BillID,
                         principalTable: "Bills",
-                        principalColumn: "BillID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "BillID");
                     table.ForeignKey(
-                        name: "FK_BillDetails_Productss_ProductID",
-                        column: x => x.ProductID,
+                        name: "FK_BillDetails_Productss_ProductsProductID",
+                        column: x => x.ProductsProductID,
                         principalTable: "Productss",
                         principalColumn: "ProductID");
                 });
@@ -292,30 +283,29 @@ namespace CSharp5_WebAPI.Migrations
                 columns: table => new
                 {
                     CDID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ComboID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    ToTal = table.Column<int>(type: "int", nullable: false)
+                    ToTal = table.Column<int>(type: "int", nullable: false),
+                    CartUserID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ProductsProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ComboID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CartDetails", x => x.CDID);
                     table.ForeignKey(
-                        name: "FK_CartDetails_Carts_UserID",
-                        column: x => x.UserID,
+                        name: "FK_CartDetails_Carts_CartUserID",
+                        column: x => x.CartUserID,
                         principalTable: "Carts",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserID");
                     table.ForeignKey(
                         name: "FK_CartDetails_Combos_ComboID",
                         column: x => x.ComboID,
                         principalTable: "Combos",
                         principalColumn: "ComboID");
                     table.ForeignKey(
-                        name: "FK_CartDetails_Productss_ProductID",
-                        column: x => x.ProductID,
+                        name: "FK_CartDetails_Productss_ProductsProductID",
+                        column: x => x.ProductsProductID,
                         principalTable: "Productss",
                         principalColumn: "ProductID");
                 });
@@ -326,9 +316,9 @@ namespace CSharp5_WebAPI.Migrations
                 column: "BillID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BillDetails_ProductID",
+                name: "IX_BillDetails_ProductsProductID",
                 table: "BillDetails",
-                column: "ProductID");
+                column: "ProductsProductID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bills_UserID",
@@ -336,19 +326,19 @@ namespace CSharp5_WebAPI.Migrations
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CartDetails_CartUserID",
+                table: "CartDetails",
+                column: "CartUserID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CartDetails_ComboID",
                 table: "CartDetails",
                 column: "ComboID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartDetails_ProductID",
+                name: "IX_CartDetails_ProductsProductID",
                 table: "CartDetails",
-                column: "ProductID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CartDetails_UserID",
-                table: "CartDetails",
-                column: "UserID");
+                column: "ProductsProductID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ComboItems_ComboID",
@@ -356,14 +346,14 @@ namespace CSharp5_WebAPI.Migrations
                 column: "ComboID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ComboItems_ProductID",
+                name: "IX_ComboItems_ProductsProductID",
                 table: "ComboItems",
-                column: "ProductID");
+                column: "ProductsProductID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Productss_CategoryID",
+                name: "IX_Productss_CategoriesCategoryID",
                 table: "Productss",
-                column: "CategoryID");
+                column: "CategoriesCategoryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Productss_ChefID",
@@ -371,14 +361,14 @@ namespace CSharp5_WebAPI.Migrations
                 column: "ChefID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Productss_IdVoucher",
-                table: "Productss",
-                column: "IdVoucher");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Productss_ProducerID",
                 table: "Productss",
                 column: "ProducerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Productss_VouchervaVoucherID",
+                table: "Productss",
+                column: "VouchervaVoucherID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_NationalID",
