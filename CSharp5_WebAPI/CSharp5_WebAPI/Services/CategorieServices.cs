@@ -1,6 +1,8 @@
-﻿namespace CSharp5_WebAPI.Services
+﻿using CSharp5_WebAPI.IServices;
+
+namespace CSharp5_WebAPI.Services
 {
-    public class CategorieServices
+    public class CategorieServices : ICategorieSerivces
     {
     }
 }
