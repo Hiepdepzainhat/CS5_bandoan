@@ -13,6 +13,7 @@ builder.Services.AddDbContext<CS5_DbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddTransient<INationalServices, NationalServices>();
 builder.Services.AddTransient<IVoucherServies, VoucherServies>();
+builder.Services.AddTransient<IRoleServices, RoleServices>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

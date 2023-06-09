@@ -1,0 +1,41 @@
+﻿@model IEnumerable<CSharp5_Share.Models.Role>
+
+@{
+    ViewData["Title"] = "ShowAllRole";
+}
+
+<h1>ShowAllRole</h1>
+
+<p>
+    <a asp-action="CreateRole">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditRole", new { id= item.RoleID }) |
+                @Html.ActionLink("Detail", "RoleDetail", new {  id= item.RoleID  }) |
+                    @Html.ActionLink("Delete", "DeleteRole", new { id= item.RoleID  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

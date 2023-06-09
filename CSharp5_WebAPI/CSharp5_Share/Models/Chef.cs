@@ -6,7 +6,7 @@ namespace CSharp5_Share.Models
     {
         [Key]
         public Guid ChefID { get; set; }
-        public string ChefName { get; set; }
-        public string ChefDescription { get; set; }
+        public string? ChefName { get; set; }
+        public string? ChefDescription { get; set; }
     }
 }
