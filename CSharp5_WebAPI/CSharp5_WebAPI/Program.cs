@@ -2,6 +2,7 @@ using CSharp5_WebAPI.Data;
 using CSharp5_WebAPI.IServices;
 using CSharp5_WebAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using Velites.Utility.SharedLibrary;
 
 var builder = WebApplication.CreateBuilder(args);
 
