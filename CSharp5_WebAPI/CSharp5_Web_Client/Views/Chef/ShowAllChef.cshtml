@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CSharp5_Share.Models.Chef>
+
+@{
+    ViewData["Title"] = "ShowAllChef";
+}
+
+<h1>ShowAllChef</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ChefID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChefName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChefDescription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChefID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChefName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChefDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditChef", new {  id=item.ChefID  }) |
+                    @Html.ActionLink("Details", "ChefDetail", new {  id=item.ChefID }) |
+                    @Html.ActionLink("Delete", "DeleteChef", new {  id=item.ChefID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
