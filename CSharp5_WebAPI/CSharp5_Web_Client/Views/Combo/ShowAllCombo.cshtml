@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CSharp5_Share.Models.Combo>
+
+@{
+    ViewData["Title"] = "ShowAllCombo";
+}
+
+<h1>ShowAllCombo</h1>
+
+<p>
+    <a asp-action="CreateCombo">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ComboID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComboName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImgCombo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComboID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComboName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImgCombo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "EditCombo", new {  id=item.ComboID  }) |
+                    @Html.ActionLink("Details", "ComboDetail", new {  id=item.ComboID  }) |
+                    @Html.ActionLink("Delete", "DeleteCombo", new {  id=item.ComboID  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
