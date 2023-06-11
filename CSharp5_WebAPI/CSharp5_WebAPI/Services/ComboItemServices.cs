@@ -43,8 +43,7 @@ namespace CSharp5_WebAPI.Services
 
             
                 comboItem.Price = cbi.Price;
-                comboItem.Combo.ComboID = cbi.Combo.ComboID;
-                comboItem.Products.ProductID = cbi.Products.ProductID;
+                
 
                 _context.ComboItems.Update(comboItem);
                 await _context.SaveChangesAsync();
