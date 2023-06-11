@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CSharp5_WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Nationals")]
     [ApiController]
     public class NationalsController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace CSharp5_WebAPI.Controllers
             _nationalServices = nationalServices;
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async Task<ActionResult<National>> GetAllNational()
         {
             var listNational = await _nationalServices.GetAllNational();
@@ -24,7 +24,7 @@ namespace CSharp5_WebAPI.Controllers
         }
 
 
-        [HttpGet("id")]
+        [HttpGet("[action]/{id}")]
         public async Task<ActionResult<National>> GetNationalById(Guid id)
         {
             var listNational = await _nationalServices.GetNationalById(id);
@@ -32,7 +32,7 @@ namespace CSharp5_WebAPI.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("[action]")]
         [AllowAnonymous]
         public async Task<ActionResult<National>> PostNational(National na)
         {
@@ -40,14 +40,14 @@ namespace CSharp5_WebAPI.Controllers
             return Ok(na);
         }
 
-        [HttpPut("id")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<National>> UpdateNational(Guid id, National na)
         {
             await _nationalServices.PutNational(id, na);
             return Ok(na);
         }
 
-        [HttpDelete("id")]
+        [HttpDelete("[action]/{id}")]
         public async Task DeleteNational(Guid id)
         {
             await _nationalServices.DeleteNational(id);
