@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CSharp5_Share.Models.Voucher>
+
+@{
+    ViewData["Title"] = "ShowAllVoucher";
+}
+
+<h1>ShowAllVoucher</h1>
+
+<p>
+    <a asp-action="CreateVoucher">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VoucherID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VoucherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PercentageDiscount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VoucherID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VoucherName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PercentageDiscount)
+            </td>
+            <td>
+                <a asp-action="EditVoucher"  asp-route-id="@item.VoucherID" class="btn btn-primary">Update</a>
+                <a asp-action="VoucherDetail"  asp-route-id="@item.VoucherID" class="btn btn-primary">Details</a>
+                <a asp-action="DeleteVoucher"  asp-route-id="@item.VoucherID" class="btn btn-primary">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

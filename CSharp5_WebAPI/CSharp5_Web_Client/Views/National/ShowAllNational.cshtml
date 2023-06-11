@@ -1,0 +1,41 @@
+﻿@model IEnumerable<CSharp5_Share.Models.National>
+
+@{
+    ViewData["Title"] = "ShowAllNational";
+}
+
+<h1>ShowAllNational</h1>
+
+<p>
+    <a asp-action="CreateNational"  class="btn btn-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NationalID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NationalName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NationalID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NationalName)
+            </td>
+            <td>
+                <a asp-action="EditNational"  asp-route-id="@item.NationalID" class="btn btn-primary">Update</a>
+                <a asp-action="NationalDetail" asp-route-id="@item.NationalID" class="btn btn-primary">Details</a>
+                <a asp-action="DeleteNational" asp-route-id="@item.NationalID" class="btn btn-primary">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
