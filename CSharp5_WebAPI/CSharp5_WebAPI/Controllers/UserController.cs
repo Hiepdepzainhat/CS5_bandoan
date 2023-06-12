@@ -59,9 +59,9 @@ namespace CSharp5_WebAPI.Controllers
             await _userSevices.DeleteUser(id);
         }
         [HttpPut("[action]/{id}")]
-        public async Task<ActionResult<User>> PutUser(string id, string name,Guid nationalID, string username, string password, string phonenumber, string address, DateTime dateofbirthday, int sex, string imguser)
+        public async Task<ActionResult<User>> PutUser(User u)
         {
-            var p = await _userSevices.PutUser(id, name, username, nationalID, password, phonenumber,address,dateofbirthday,sex, imguser);
+            var p = await _userSevices.PutUser(u);
             return Ok(p);
         }
         [HttpGet("[action]")]

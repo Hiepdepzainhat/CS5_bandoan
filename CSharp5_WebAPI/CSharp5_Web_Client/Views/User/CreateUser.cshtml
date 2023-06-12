@@ -20,18 +20,6 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RoleID" class="control-label"></label>
-                <select asp-for="RoleID" class="form-select" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  @{
-                        foreach (Role role in lisRole)
-                        {
-                            <option value="@role.RoleID">@role.RoleName</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
                 <label asp-for="NationalID" class="control-label"></label>
                  <select asp-for="NationalID" class="form-select" aria-label="Default select example">
                   <option selected>Open this select menu</option>
