@@ -6,6 +6,8 @@ namespace CSharp5_Share.Models
     {
         [Key]
         public Guid UserID { get; set; }
+        public Guid? RoleID { get; set; }
+        public Guid? NationalID { get; set; }
         public string? Name { get; set; }
         public string? UserName { get; set; }
         public string? PassWord { get; set; }
@@ -16,6 +18,7 @@ namespace CSharp5_Share.Models
         public string? ImgUser { get; set; }
         public virtual Role? Role { get; set; }
         public virtual National? National { get; set; }
+        public virtual IEnumerable<Bill>? Bills { get; set; }
         public virtual Cart? Cart { get; set; }
     }
 }

@@ -41,7 +41,10 @@ namespace CSharp5_WebAPI.Services
         {
             var products = _context.Productss.FirstOrDefault(p => p.ProductID == id); // it's old products
             // paste prop new --> old
-            products.ProductID = p.ProductID;
+            products.CategoryID = p.CategoryID;
+            products.ChefID = p.ChefID;
+            products.IdVoucher = p.IdVoucher;
+            products.ProducerID = p.ProducerID;
             products.ProductName = p.ProductName;
             products.Quantity = p.Quantity;
             products.EntryPrice = p.EntryPrice; // giá nhập

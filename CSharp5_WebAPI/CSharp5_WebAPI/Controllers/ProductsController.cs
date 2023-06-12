@@ -26,15 +26,36 @@ namespace CSharp5_WebAPI.Controllers
         [HttpGet("[action]/{id}")]
         public async Task<ActionResult<Products>> GetProductsById(Guid id)
         {
-            var listproduct = await _productServices.GetProductsById(id);
-            return Ok(listproduct);
+            try
+            {
+                var products = await _productServices.GetProductsById(id);
+                if (products == null)
+                {
+                    return NotFound();
+                }
+                return Ok(products);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
 
         [HttpPost("[action]")]
         public async Task<ActionResult<Products>> PostProducts(Products p)
         {
-            await _productServices.PostProducts(p);
-            return Ok(p);
+            try
+            {
+                await _productServices.PostProducts(p);
+                return Ok(p);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+            
         }
 
         [HttpPut("[action]/{id}")]

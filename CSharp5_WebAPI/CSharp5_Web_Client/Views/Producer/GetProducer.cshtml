@@ -7,7 +7,7 @@
 <h1>GetProducer</h1>
 
 <p>
-    <a asp-action="AddProducer">Create New</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -37,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "UpdateProducer", new { id = item.ProducerID }) |
-                @Html.ActionLink("Details", "ProducerDetail", new { id = item.ProducerID }) |
-                @Html.ActionLink("Delete", "DeleteProducer", new { id = item.ProducerID })
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
