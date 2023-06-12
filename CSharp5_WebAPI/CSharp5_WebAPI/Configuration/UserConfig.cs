@@ -18,8 +18,8 @@ namespace CSharp5_WebAPI.Configuration
             builder.Property(x => x.DateOfBirth).HasColumnType("Date").IsRequired();
             builder.Property(x => x.Sex).HasColumnType("int").IsRequired();
             builder.Property(x => x.ImgUser).HasColumnType("nvarchar(1000)");
-/*            builder.HasOne(p => p.Role).WithMany(p => p.Users).HasForeignKey(p => p.RoleID);
-            builder.HasOne(p => p.National).WithMany(p => p.Users).HasForeignKey(p => p.NationalID);*/
+            builder.HasOne(p => p.Role).WithMany(p => p.Users).HasForeignKey(p => p.RoleID);
+            builder.HasOne(p => p.National).WithMany(p => p.Users).HasForeignKey(p => p.NationalID);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace CSharp5_Share.Models
         public Guid? UserID { get; set; }
         public int? Status { get; set; }
         public int? Price { get; set; }
+        public virtual ICollection<BillDetail>? BillDetail { get; set; }
         public virtual User? User { get; set; }
 
     }

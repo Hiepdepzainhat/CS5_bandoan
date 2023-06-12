@@ -12,15 +12,16 @@ namespace CSharp5_Web_Client.Controllers
         {
             _httpClient = httpClient;
         }
-        [HttpGet]
         public async Task<IActionResult> GetProducer()
         {
             string apiUrl = "https://localhost:7149/api/producer/GetProducers";
             var response = await _httpClient.GetAsync(apiUrl);
             string apiData = await response.Content.ReadAsStringAsync();
             var producers = JsonConvert.DeserializeObject<List<Producer>>(apiData);
-            return View(producers);
+            return View(producers); 
         }
+        [HttpGet]
+
         public async Task<IActionResult> ProducerDetail(Guid id)
         {
             string apiUrl = $"https://localhost:7149/api/producer/GetProducerById/{id}";

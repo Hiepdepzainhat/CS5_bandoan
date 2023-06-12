@@ -1,11 +1,12 @@
 ﻿@model CSharp5_Share.Models.Products
 
 @{
-    ViewData["Title"] = "ProductsDetail";
+    ViewData["Title"] = "DeleteProducts";
 }
 
-<h1>ProductsDetail</h1>
+<h1>DeleteProducts</h1>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Products</h4>
     <hr />
@@ -95,5 +96,9 @@
             @Html.DisplayFor(model => model.Desciption)
         </dd>
     </dl>
+    
+    <form asp-action="DeleteProducts">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
 </div>
-
