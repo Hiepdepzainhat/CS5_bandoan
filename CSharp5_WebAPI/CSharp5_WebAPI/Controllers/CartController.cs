@@ -38,18 +38,14 @@ namespace CSharp5_WebAPI.Controllers
             }
         }
         [HttpPost("[action]")]
-        public async Task<ActionResult<Cart>> PostCart(
-            Guid id, string des, int st)
+        public async Task<ActionResult<Cart>> PostCart(Cart c)
         {
-            Cart cart = new Cart();
-            cart.UserID = id;
-            cart.Desciption = des;
-            cart.Status = st;
             try
             {
-                var post = await _cartServices.PostCart(cart);
-                return Ok(post);
-            }catch (Exception)
+                await _cartServices.PostCart(c);
+                return Ok(c);
+            }
+            catch (Exception)
             {
                 return BadRequest();
             }

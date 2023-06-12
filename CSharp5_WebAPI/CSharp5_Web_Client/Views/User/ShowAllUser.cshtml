@@ -1,4 +1,5 @@
-﻿@model IEnumerable<CSharp5_Share.Models.User>
+﻿@using CSharp5_Share.Models;
+@model IEnumerable<CSharp5_Share.Models.User>
 
 @{
     ViewData["Title"] = "ShowAllUser";
@@ -6,6 +7,8 @@
     {
         ".png", ".jpg", ".jpeg", ".gif", ".tiff", ".pdf", ".webp"
     };
+    var lisRole =  ViewBag.Roles as List<Role>;
+    var listNational =  ViewBag.Nationals as List<National>;
 }
 
 <h1>ShowAllUser</h1>
@@ -20,6 +23,9 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
+                Role
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
@@ -30,6 +36,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                National
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateOfBirth)
@@ -50,6 +59,17 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
+                @{
+                    foreach(Role role in lisRole)
+                    {
+                        if (item.RoleID == role.RoleID)
+                        {
+                            <p>@role.RoleName</p>;
+                        }
+                    }
+                }
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
@@ -60,6 +80,17 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @{
+                    foreach(National na in listNational)
+                    {
+                        if (item.NationalID == na.NationalID)
+                        {
+                            <p>@na.NationalName</p>;
+                        }
+                    }
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateOfBirth)

@@ -1,5 +1,6 @@
 ﻿using CSharp5_Share.Models;
 using CSharp5_WebAPI.IServices;
+using CSharp5_WebAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,30 +41,12 @@ namespace CSharp5_WebAPI.Controllers
             }
         }
         [HttpPost("[action]")]
-        public async Task<ActionResult<User>> PostUser(string name, Guid roleID,Guid nationalID,string username, string password, string phonenumber, string address, DateTime dateofbirthday, int sex, string imguser)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-            User user = new User();
-            user.UserID = Guid.NewGuid();
-            user.RoleID = roleID;
-            user.NationalID = nationalID;
-            user.Name = name;
-            user.UserName = username;
-            user.PassWord = password;
-            user.PhoneNumber = phonenumber;
-            user.Address = address;
-            user.DateOfBirth = dateofbirthday;
-            user.Sex = sex;
-            user.ImgUser = imguser;
-
             try
-            {               
-                var p = await _userSevices.PostUser(user);
-                Cart cart = new Cart();
-                cart.UserID = user.UserID;
-                cart.Desciption = "";
-                cart.Status = 1;
-                var c = await _cartServices.PostCart(cart);
-                return Ok(p);
+            {
+                await _userSevices.PostUser(user);
+                return Ok(user);
             }
             catch (Exception)
             {
