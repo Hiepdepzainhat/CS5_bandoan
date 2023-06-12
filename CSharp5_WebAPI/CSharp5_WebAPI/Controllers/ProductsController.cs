@@ -21,7 +21,11 @@ namespace CSharp5_WebAPI.Controllers
             var listproduct = await _productServices.GetAllProducts();
             return Ok(listproduct);
         }
-
+        /*public async Task<ActionResult<Products>> GetProductsByCategories(Guid idcate)
+        {
+            var listproduct = await _productServices.GetProductToCategorie(idcate);
+            return Ok(listproduct);
+        }*/
 
         [HttpGet("[action]/{id}")]
         public async Task<ActionResult<Products>> GetProductsById(Guid id)

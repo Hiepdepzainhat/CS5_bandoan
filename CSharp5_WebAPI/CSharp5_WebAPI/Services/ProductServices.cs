@@ -1,6 +1,7 @@
 ﻿using CSharp5_Share.Models;
 using CSharp5_WebAPI.Data;
 using CSharp5_WebAPI.IServices;
+using IdGen;
 using Microsoft.EntityFrameworkCore;
 
 namespace CSharp5_WebAPI.Services
@@ -30,6 +31,11 @@ namespace CSharp5_WebAPI.Services
             return _context.Productss.FirstOrDefault(p => p.ProductID == id);
         }
 
+/*        public async Task<IEnumerable<Products>> GetProductToCategorie(Guid idCategorie)
+        {
+            return  _context.Productss.Where(p => p.CategoryID == idCategorie).ToList();
+        }
+*/
         public async Task<Products> PostProducts(Products p)
         {
             await _context.Productss.AddAsync(p);

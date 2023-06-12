@@ -69,25 +69,42 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0 pe-4">
-                            <a asp-area="" asp-controller="Home" asp-action="Product" class="nav-item nav-link active">Home</a>
-                            
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Home" asp-action="Product" class="nav-item nav-link active">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Home" asp-action="Cart" class="nav-item nav-link">Cart</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Product" asp-action="ShowAllProductsHome" class="nav-item nav-link">ShowAllProductsHome</a>
+                            </li>
+                            @*<div class="dropdown">
+                              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Services
+                              </a>
 
-                            
-                            <a asp-area="" asp-controller="Home" asp-action="Cart" class="nav-item nav-link">
-                                Cart
-                            </a>
-                            @*<div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                            <a href="booking.html" class="dropdown-item">Booking</a>
-                            <a href="team.html" class="dropdown-item">Our Team</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            </div>
+                              <ul class="dropdown-menu">
+                                <li><a asp-controller="Product" asp-action="ShowAllProducts" class="dropdown-item">Product</a></li>
+                                <li><a asp-controller="Producer" asp-action="GetProducer" class="dropdown-item">Producer</a></li>
+                                <li><a asp-controller="Chef" asp-action="ShowAllChef" class="dropdown-item">Chef</a></li>
+                                <li><a asp-controller="Categorie" asp-action="ShowAllCategorie" class="dropdown-item">Categorie</a></li>
+                              </ul>
                             </div>*@
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                                <div class="dropdown-menu m-0">
+                                    <a asp-controller="Product" asp-action="ShowAllProducts" class="dropdown-item">Product</a>
+                                    <a asp-controller="Producer" asp-action="GetProducer" class="dropdown-item">Producer</a>
+                                    <a asp-controller="Chef" asp-action="ShowAllChef" class="dropdown-item">Chef</a>
+                                    <a asp-controller="Categorie" asp-action="ShowAllCategorie" class="dropdown-item">Categorie</a>
+                                </div>
+                            </div>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="CreateUSer">ShowAllCombo</a>
                             </li>
-                            <a asp-area="" asp-controller="Home" asp-action="Login" class="nav-item nav-link">Login</a>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Home" asp-action="Login" class="nav-item nav-link">Login</a>
+                            </li>
                         </div>
                         @*<a href="" class="btn btn-primary py-2 px-4">Book A Table</a>*@
                     </div>
