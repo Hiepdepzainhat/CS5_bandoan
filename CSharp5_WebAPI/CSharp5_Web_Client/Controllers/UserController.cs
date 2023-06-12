@@ -64,6 +64,7 @@ namespace CSharp5_Web_Client.Controllers
             var reponseRole = await httpClientRole.GetAsync(RoleUrl);
             string apiDataRole = await reponseRole.Content.ReadAsStringAsync();
             var listRole = JsonConvert.DeserializeObject<List<Role>>(apiDataRole);
+            var roleCustomer = listRole.FirstOrDefault(p => p.RoleName == "Customer");  // lấy những role Customer
             ViewBag.Roless = listRole;
 
             var NationalUrl = $"https://localhost:7149/api/Nationals/GetAllNational";
@@ -81,7 +82,7 @@ namespace CSharp5_Web_Client.Controllers
                 imageFile.CopyTo(stream);
                 r.ImgUser = imageFile.FileName;
             }
-            r.RoleID = Guid.Parse("5164056A-43FA-4CBC-B3E0-814C433C1183");
+            r.RoleID = roleCustomer.RoleID;
             var content = new StringContent(JsonConvert.SerializeObject(r), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(apiURL, content);
             if (response.IsSuccessStatusCode)
