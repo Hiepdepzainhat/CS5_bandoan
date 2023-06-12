@@ -59,11 +59,11 @@ namespace CSharp5_Web_Client.Controllers
                 HttpContext.Session.SetString("IdUser", Convert.ToString(user.UserID));
                 if (user.RoleID == roleAdmin.RoleID)
                 {
-                    return RedirectToAction("ShowAllProducts", "Product");
+                    return RedirectToAction("GetProducer", "ProducerAdmin", new {area = "Admin"});
                 }
                 else if (user.RoleID == roleUser.RoleID)
                 {
-                    return RedirectToAction("ShowAllProductsHome", "Product");
+                    return RedirectToAction("ShowAllProductsHome", "Product",new {area = "Customer"});
                 }
                 else
                 {
