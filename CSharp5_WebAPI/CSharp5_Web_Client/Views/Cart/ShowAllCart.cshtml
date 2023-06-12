@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<CSharp5_Share.Models.Cart>
+@using CSharp5_Share.Models;
 
-
+@{
+    var lisUser =  ViewBag.Users as List<User>;
+}
 <table class="table">
     <thead>
         <tr>
@@ -26,7 +29,15 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.UserID)
+                @{
+                    foreach(User u in lisUser)
+                    {
+                        if (item.UserID == u.UserID)
+                        {
+                            <p>@u.Name</p>;
+                        }
+                    }
+                }
             </td>
             <td>
                     <a asp-action="EditCart" asp-route-id="@item.UserID">Edit</a> |

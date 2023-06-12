@@ -18,23 +18,25 @@ namespace CSharp5_WebAPI.Controllers
         [HttpGet("[action]")]
         public async Task<ActionResult<Cart>> GetAllCart()
         {
-            var post = await _cartServices.GetAllCart();
-            return Ok(post);
+            var carts = await _cartServices.GetAllCart();
+            return Ok(carts);
         }
         [HttpGet("[action]/{id}")]
         public async Task<ActionResult<Cart>> GetCartById(string id)
         {
             try
             {
-                var postid = await _cartServices.GetCartById(id);
-                if(postid == null)
+                var carts = await _cartServices.GetCartById(id);
+                if (carts == null)
                 {
                     return NotFound();
                 }
-                return Ok(postid);
-            }catch (Exception)
+                return Ok(carts);
+            }
+            catch (Exception)
             {
-                return BadRequest();
+
+                throw;
             }
         }
         [HttpPost("[action]")]
@@ -56,9 +58,9 @@ namespace CSharp5_WebAPI.Controllers
             await _cartServices.DeleteCart(id);
         }
         [HttpPut("[action]/{id}")]
-        public async Task<ActionResult<Cart>> PutCart(string id, string description, int status)
+        public async Task<ActionResult<Cart>> PutCart(Guid id,Cart cart)
         {
-            var p = await _cartServices.PutCart(id, description, status);
+            var p = await _cartServices.PutCart(id, cart);
             return Ok(p);
         }
     }

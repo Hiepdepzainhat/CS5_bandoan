@@ -36,15 +36,16 @@ namespace CSharp5_WebAPI.Services
             return cart;
         }
 
-        public async Task<Cart> PutCart(string id, string Description, int status)
+        public async Task<Cart> PutCart(Guid id,Cart c)
         {
-            var cart = _context.Carts.FirstOrDefault(x => x.UserID == Guid.Parse(id));
-            cart.Desciption = Description;
-            cart.Status = status;
-            _context.Carts.Update(cart);
+            var carts = _context.Carts.FirstOrDefault(x => x.UserID == id);
+            carts.Desciption = c.Desciption;
+            carts.Status = c.Status;
+            _context.Carts.Update(carts);
             await _context.SaveChangesAsync();
-            return cart;
+            return carts;
 
         }
+
     }
 }

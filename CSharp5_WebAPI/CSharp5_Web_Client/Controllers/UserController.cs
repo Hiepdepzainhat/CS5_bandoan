@@ -58,7 +58,7 @@ namespace CSharp5_Web_Client.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser(User r, IFormFile imageFile)
         {
-
+            r.UserID = Guid.NewGuid();
             var RoleUrl = $"https://localhost:7149/api/Role/GetAllRole";
             var httpClientRole = new HttpClient();
             var reponseRole = await httpClientRole.GetAsync(RoleUrl);
@@ -85,6 +85,15 @@ namespace CSharp5_Web_Client.Controllers
             r.RoleID = roleCustomer.RoleID;
             var content = new StringContent(JsonConvert.SerializeObject(r), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(apiURL, content);
+
+            var cart = new Cart();
+            cart.UserID = r.UserID;
+            cart.Status = 1;
+            cart.Desciption = "";
+
+            string apiURLCart = $"https://localhost:7149/api/Cart/PostCart";
+            var contentCart = new StringContent(JsonConvert.SerializeObject(cart), Encoding.UTF8, "application/json");
+            var responseCart = await _httpClient.PostAsync(apiURLCart, contentCart);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("ShowAllUser", "User");

@@ -15,6 +15,13 @@ namespace CSharp5_Web_Client.Controllers
         [HttpGet]
         public async Task<IActionResult> ShowAllCart()
         {
+            string apiUrlUser = $"https://localhost:7149/api/User/GetAllUser";
+            var httpClientUser = new HttpClient();
+            var reponseUser = await httpClientUser.GetAsync(apiUrlUser);
+            string apiDataUser = await reponseUser.Content.ReadAsStringAsync();
+            var listUser = JsonConvert.DeserializeObject<List<User>>(apiDataUser);
+            ViewBag.Users = listUser;
+
             string apiUrl = $"https://localhost:7149/api/Cart/GetAllCart";
             var httpClient = new HttpClient();
             var reponse = await httpClient.GetAsync(apiUrl);
