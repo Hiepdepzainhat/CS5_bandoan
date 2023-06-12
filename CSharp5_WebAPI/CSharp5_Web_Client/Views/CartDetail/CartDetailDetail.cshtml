@@ -1,0 +1,36 @@
+﻿@model CSharp5_Share.Models.CartDetail
+
+@{
+    ViewData["Title"] = "CartDetailDetail";
+}
+
+<h1>CartDetailDetail</h1>
+
+<div>
+    <h4>CartDetail</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ToTal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ToTal)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditCartDetail" asp-route-id="@Model?.CDID">Edit</a> |
+    <a asp-action="ShowAllCartDetail">Back to List</a>
+</div>

@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CSharp5_Web_Client.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<CSharp5_Web_ClientContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CSharp5_Web_ClientContext") ?? throw new InvalidOperationException("Connection string 'CSharp5_Web_ClientContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
