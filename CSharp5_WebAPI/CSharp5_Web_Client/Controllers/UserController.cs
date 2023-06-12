@@ -27,17 +27,17 @@ namespace CSharp5_Web_Client.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateUser(User r)
+        public async Task<IActionResult> CreateUser(User r,Cart c)
         {
             string apiURL = $"https://localhost:7149/api/User/PostUser?Name={r.Name}&UserName={r.UserName}&PassWord={r.PassWord}&PhoneNumber={r.PhoneNumber}&Address={r.Address}&DateOfBirth={r.DateOfBirth}&Sex={r.Sex}&ImgUser={r.ImgUser}";
-            //string cartURL = $"https://localhost:7149/api/Cart/PostCart?userId={c.UserID}&description={c.Desciption}&status={c.Status}";
+            
 
             var content = new StringContent(JsonConvert.SerializeObject(r), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(apiURL, content);
-
-            //var Cartcontent = new StringContent(JsonConvert.SerializeObject(c), Encoding.UTF8, "application/json");
-            //var Cartresponse = await _httpClient.PostAsync(apiURL, content);
-            if (response.IsSuccessStatusCode)
+            string cartURL = $"https://localhost:7149/api/Cart/PostCart?userId={r.UserID}&description={c.Desciption}&status={1}";
+            var Cartcontent = new StringContent(JsonConvert.SerializeObject(c), Encoding.UTF8, "application/json");
+            var Cartresponse = await _httpClient.PostAsync(apiURL, content);
+            if (!response.IsSuccessStatusCode  && !Cartresponse.IsSuccessStatusCode)
             {
                 return RedirectToAction("ShowAllUser", "User");
             }
