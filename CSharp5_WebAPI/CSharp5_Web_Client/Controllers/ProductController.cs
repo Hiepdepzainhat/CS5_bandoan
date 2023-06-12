@@ -14,6 +14,15 @@ namespace CSharp5_Web_Client.Controllers
             _httpClient = new HttpClient();  
         }
         [HttpGet]
+        public async Task<IActionResult> ShowAllProductsHome()
+        {
+            string apiUrl = $"https://localhost:7149/api/Products/GetAllProducts";
+            var httpClient = new HttpClient();
+            var reponse = await httpClient.GetAsync(apiUrl);
+            string apiData = await reponse.Content.ReadAsStringAsync();
+            var products = JsonConvert.DeserializeObject<List<Products>>(apiData);
+            return View(products);
+        }
         public async Task<IActionResult> ShowAllProducts()
         {
             var categorieiUrl = "https://localhost:7149/api/Categorie/GetAllCategory";
@@ -81,10 +90,6 @@ namespace CSharp5_Web_Client.Controllers
                 imageFile.CopyTo(stream);
                 p.Desciption = imageFile.FileName;
             }
-            /*string apiURL = $"https://localhost:7149/api/Products/PostProducts?productName={p.ProductName}" +
-                $"&quantity={p.Quantity}&EntryPrice={p.EntryPrice}&EntryPrice={p.EntryPrice}&DateOfManufacture={p.DateOfManufacture}" +
-                $"&Expired={p.Expired}&EntryPrice={p.EntryPrice}&ImPortDate={p.ImPortDate}&Price={p.Price}" +
-                $"&Status={p.Status}&Desciption={p.Desciption}";*/
             var content = new StringContent(JsonConvert.SerializeObject(p), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(apiURL, content);
 
