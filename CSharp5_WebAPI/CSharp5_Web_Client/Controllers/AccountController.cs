@@ -8,7 +8,7 @@ namespace CSharp5_Web_Client.Controllers
 {
     public class AccountController : Controller
     {
-        HttpClient _httpclient;
+        private readonly HttpClient _httpclient;
         public AccountController()
         {
             _httpclient = new HttpClient();
@@ -59,11 +59,11 @@ namespace CSharp5_Web_Client.Controllers
                 HttpContext.Session.SetString("IdUser", Convert.ToString(user.UserID));
                 if (user.RoleID == roleAdmin.RoleID)
                 {
-                    return RedirectToAction("GetProducer", "ProducerAdmin", new {area = "Admin"});
+                    return RedirectToAction("ShowAllProducts", "Product");
                 }
                 else if (user.RoleID == roleUser.RoleID)
                 {
-                    return RedirectToAction("ShowAllProductsHome", "Product",new {area = "Customer"});
+                    return RedirectToAction("ShowAllProductsHome", "Product");
                 }
                 else
                 {

@@ -8,11 +8,12 @@ namespace CSharp5_Web_Client.Controllers
     public class ProducerController : Controller
     {
         private readonly HttpClient _httpClient;
-        public ProducerController(HttpClient httpClient)
+        public ProducerController()
         {
-            _httpClient = httpClient;
+            _httpClient = new HttpClient();
         }
-        public async Task<IActionResult> GetProducer()
+        [HttpGet]
+        public async Task<IActionResult> GetAllProducer()
         {
             string apiUrl = "https://localhost:7149/api/producer/GetProducers";
             var response = await _httpClient.GetAsync(apiUrl);
