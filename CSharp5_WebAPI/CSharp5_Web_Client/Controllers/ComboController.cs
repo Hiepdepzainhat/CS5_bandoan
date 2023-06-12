@@ -27,11 +27,20 @@ namespace CSharp5_Web_Client.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateCombo(Combo cb)
-        {     
-            string apiURL = $"https://localhost:7149/api/Combo/PostCombo?name={cb.ComboName}&img{cb.ImgCombo}&price={cb.Price}&status{cb.Status}";
-            
-            var content = new StringContent(JsonConvert.SerializeObject(cb), Encoding.UTF8, "application/json");
+        public async Task<IActionResult> CreateCombo(Combo cb,IFormFile imageFile)
+        {
+            //string apiURL = $"https://localhost:7149/api/Combo/PostCombo?name={cb.ComboName}&img{cb.ImgCombo}&price={cb.Price}&status{cb.Status}";
+            string apiURL = $"https://localhost:7149/api/Combo/PostCombo";
+			if (imageFile != null && imageFile.Length > 0)
+			{
+				var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", imageFile.FileName);
+				var stream = new FileStream(path, FileMode.Create);
+				imageFile.CopyTo(stream);
+				cb.ImgCombo = imageFile.FileName;
+			}
+
+
+			var content = new StringContent(JsonConvert.SerializeObject(cb), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(apiURL, content);
             if (response.IsSuccessStatusCode)
             {

@@ -17,7 +17,26 @@ namespace CSharp5_Web_Client.Controllers
         {
             return View();
         }
-
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Register()
+        {
+            return View();
+        }
+        public IActionResult Pay()
+        {
+            return View();
+        }
+        public IActionResult Product()
+        {
+            return View();
+        }
+        public IActionResult Cart()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

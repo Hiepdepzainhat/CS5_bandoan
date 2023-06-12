@@ -2,6 +2,10 @@
 
 @{
     ViewData["Title"] = "ShowAllCombo";
+    List<string> imageExtension = new List<string>() 
+    {
+        ".png", ".jpg", ".jpeg", ".gif", ".tiff", ".pdf", ".webp"
+    };
 }
 
 <h1>ShowAllCombo</h1>
@@ -40,7 +44,16 @@
                 @Html.DisplayFor(modelItem => item.ComboName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImgCombo)
+                @*@Html.DisplayFor(modelItem => item.ImgCombo)*@
+                @{string extension = System.IO.Path.GetExtension(item.ImgCombo);} 
+                @if (imageExtension.Contains(extension.Trim())) 
+                {
+                    <img src="~/img/@item.ImgCombo" height="100px">
+                }
+                else 
+                {
+                    <img src="~/img/defaul.png" height="100px">
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
