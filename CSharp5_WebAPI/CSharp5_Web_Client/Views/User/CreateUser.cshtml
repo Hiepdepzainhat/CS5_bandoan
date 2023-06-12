@@ -1,7 +1,9 @@
-﻿@model CSharp5_Share.Models.User
-
+﻿@using CSharp5_Share.Models;
+@model CSharp5_Share.Models.User
 @{
     ViewData["Title"] = "CreateUser";
+    var lisRole =  ViewBag.Roless as List<Role>;
+    var listNational =  ViewBag.Nationals as List<National>;
 }
 
 <h1>CreateUser</h1>
@@ -10,12 +12,36 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateUser">
+        <form asp-action="CreateUser" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoleID" class="control-label"></label>
+                <select asp-for="RoleID" class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  @{
+                        foreach (Role role in lisRole)
+                        {
+                            <option value="@role.RoleID">@role.RoleName</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NationalID" class="control-label"></label>
+                 <select asp-for="NationalID" class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  @{
+                        foreach (National na in listNational)
+                        {
+                            <option value="@na.NationalID">@na.NationalName</option>
+                        }
+                    }
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="UserName" class="control-label"></label>
@@ -42,15 +68,16 @@
                 <input asp-for="DateOfBirth" class="form-control" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Sex" class="control-label"></label>
-                <input asp-for="Sex" class="form-control" />
-                <span asp-validation-for="Sex" class="text-danger"></span>
+            <div class="form-group"> 
+                <select asp-for="Sex" class="form-select" aria-label="Default select example">
+                  <option selected>Chọn Giới Tính Đi bro</option>
+                            <option value="1">Nam</option> 
+                            <option value="2">Nữ</option> 
+                </select>
             </div>
             <div class="form-group">
                 <label for="formFile" class="form-label">Chọn ảnh đại diện</label>
-                <input type="file" name="imageFile" accept="images/*" class="form-control" />
-              
+                <input asp-for="ImgUser" type="file" name="imageFile" accept="images/*" class="form-control" />
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary" style="margin-left: 600px;margin-top: 20px;">Login</button>
@@ -58,12 +85,3 @@
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="ShowAllUser">Back to List</a>
-</div>
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

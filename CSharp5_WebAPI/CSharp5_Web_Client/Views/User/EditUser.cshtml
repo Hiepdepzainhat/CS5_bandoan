@@ -1,16 +1,46 @@
-﻿@model CSharp5_Share.Models.User
-
+﻿@using CSharp5_Share.Models;
+@model CSharp5_Share.Models.User
+@{
+    ViewData["Title"] = "EditUser";
+    var lisRole =  ViewBag.Roles as List<Role>;
+    var listNational =  ViewBag.Nationals as List<National>;
+}
 <h4>User</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditUser">
+        <form asp-action="EditUser" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="UserID" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoleID" class="control-label"></label>
+                <select asp-for="RoleID" class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  @{
+                        foreach (Role role in lisRole)
+                        {
+                            <option value="@role.RoleID">@role.RoleName</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NationalID" class="control-label"></label>
+                 <select asp-for="NationalID" class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  @{
+                        foreach (National na in listNational)
+                        {
+                            <option value="@na.NationalID">@na.NationalName</option>
+                        }
+                    }
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="UserName" class="control-label"></label>
@@ -53,8 +83,3 @@
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="ShowAllUser">Back to List</a>
-</div>
-

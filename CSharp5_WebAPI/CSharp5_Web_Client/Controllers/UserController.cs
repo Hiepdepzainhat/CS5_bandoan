@@ -15,6 +15,20 @@ namespace CSharp5_Web_Client.Controllers
         [HttpGet]
         public async Task<IActionResult> ShowAllUser()
         {
+            var RoleUrl = $"https://localhost:7149/api/Role/GetAllRole";
+            var httpClientRole = new HttpClient();
+            var reponseRole = await httpClientRole.GetAsync(RoleUrl);
+            string apiDataRole = await reponseRole.Content.ReadAsStringAsync();
+            var listRole = JsonConvert.DeserializeObject<List<Role>>(apiDataRole);
+            ViewBag.Roles = listRole;
+
+            var NationalUrl = $"https://localhost:7149/api/Nationals/GetAllNational";
+            var httpClientNational = new HttpClient();
+            var reponseNational = await httpClientNational.GetAsync(NationalUrl);
+            string apiDataNational = await reponseNational.Content.ReadAsStringAsync();
+            var listNational = JsonConvert.DeserializeObject<List<National>>(apiDataNational);
+            ViewBag.Nationals = listNational;
+
             string apiUrl = $"https://localhost:7149/api/User/GetAllUser";
             var httpClient = new HttpClient();
             var reponse = await httpClient.GetAsync(apiUrl);
@@ -22,13 +36,44 @@ namespace CSharp5_Web_Client.Controllers
             var user = JsonConvert.DeserializeObject<List<User>>(apiData);
             return View(user);
         }
+        [HttpGet]
         public async Task<IActionResult> CreateUser()
         {
+            var RoleUrl = $"https://localhost:7149/api/Role/GetAllRole";
+            var httpClientRole = new HttpClient();
+            var reponseRole = await httpClientRole.GetAsync(RoleUrl);
+            string apiDataRole = await reponseRole.Content.ReadAsStringAsync();
+            var listRole = JsonConvert.DeserializeObject<List<Role>>(apiDataRole);
+            ViewBag.Roless = listRole;
+
+            var NationalUrl = $"https://localhost:7149/api/Nationals/GetAllNational";
+            var httpClientNational = new HttpClient();
+            var reponseNational = await httpClientNational.GetAsync(NationalUrl);
+            string apiDataNational = await reponseNational.Content.ReadAsStringAsync();
+            var listNational = JsonConvert.DeserializeObject<List<National>>(apiDataNational);
+            ViewBag.Nationals = listNational;
             return View();
         }
+       
         [HttpPost]
-        public async Task<IActionResult> CreateUser(User r,Cart c, IFormFile imageFile)
+        public async Task<IActionResult> CreateUser(User r, IFormFile imageFile)
         {
+
+            var RoleUrl = $"https://localhost:7149/api/Role/GetAllRole";
+            var httpClientRole = new HttpClient();
+            var reponseRole = await httpClientRole.GetAsync(RoleUrl);
+            string apiDataRole = await reponseRole.Content.ReadAsStringAsync();
+            var listRole = JsonConvert.DeserializeObject<List<Role>>(apiDataRole);
+            ViewBag.Roless = listRole;
+
+            var NationalUrl = $"https://localhost:7149/api/Nationals/GetAllNational";
+            var httpClientNational = new HttpClient();
+            var reponseNational = await httpClientNational.GetAsync(NationalUrl);
+            string apiDataNational = await reponseNational.Content.ReadAsStringAsync();
+            var listNational = JsonConvert.DeserializeObject<List<National>>(apiDataNational);
+            ViewBag.Nationals = listNational;
+
+            string apiURL = $"https://localhost:7149/api/User/PostUser";
             if (imageFile != null && imageFile.Length > 0)
             {
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", imageFile.FileName);
@@ -36,15 +81,9 @@ namespace CSharp5_Web_Client.Controllers
                 imageFile.CopyTo(stream);
                 r.ImgUser = imageFile.FileName;
             }
-            string apiURL = $"https://localhost:7149/api/User/PostUser?Name={r.Name}&UserName={r.UserName}&PassWord={r.PassWord}&PhoneNumber={r.PhoneNumber}&Address={r.Address}&DateOfBirth={r.DateOfBirth}&Sex={r.Sex}&ImgUser={r.ImgUser}";
-            
-
             var content = new StringContent(JsonConvert.SerializeObject(r), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(apiURL, content);
-            string cartURL = $"https://localhost:7149/api/Cart/PostCart?userId={r.UserID}&description={c.Desciption}&status={1}";
-            var Cartcontent = new StringContent(JsonConvert.SerializeObject(c), Encoding.UTF8, "application/json");
-            var Cartresponse = await _httpClient.PostAsync(apiURL, content);
-            if (!response.IsSuccessStatusCode  && !Cartresponse.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("ShowAllUser", "User");
             }
@@ -65,6 +104,20 @@ namespace CSharp5_Web_Client.Controllers
         }
         public async Task<IActionResult> EditUser(Guid id)
         {
+            var RoleUrl = $"https://localhost:7149/api/Role/GetAllRole";
+            var httpClientRole = new HttpClient();
+            var reponseRole = await httpClientRole.GetAsync(RoleUrl);
+            string apiDataRole = await reponseRole.Content.ReadAsStringAsync();
+            var listRole = JsonConvert.DeserializeObject<List<Role>>(apiDataRole);
+            ViewBag.Roles = listRole;
+
+            var NationalUrl = $"https://localhost:7149/api/Nationals/GetAllNational";
+            var httpClientNational = new HttpClient();
+            var reponseNational = await httpClientNational.GetAsync(NationalUrl);
+            string apiDataNational = await reponseNational.Content.ReadAsStringAsync();
+            var listNational = JsonConvert.DeserializeObject<List<National>>(apiDataNational);
+            ViewBag.Nationals = listNational;
+
             string apiURL = $"https://localhost:7149/api/User/GetUser/{id}";
             var response = await _httpClient.GetAsync(apiURL);
             var apiData = await response.Content.ReadAsStringAsync();
