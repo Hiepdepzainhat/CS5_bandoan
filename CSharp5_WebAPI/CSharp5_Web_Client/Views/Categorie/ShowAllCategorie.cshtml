@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CSharp5_Share.Models.Categories>
+
+@{
+    ViewData["Title"] = "ShowAllCategorie";
+}
+
+<h1>ShowAllCategorie</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditCategorie", new {  id=item.CategoryID  }) |
+                    @Html.ActionLink("Details", "CategorieDetail", new { id=item.CategoryID }) |
+                    @Html.ActionLink("Delete", "DeleteCategorie", new { id=item.CategoryID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

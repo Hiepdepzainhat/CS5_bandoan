@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CSharp5_Share.Models.Producer>
+
+@{
+    ViewData["Title"] = "GetProducer";
+}
+
+<h1>GetProducer</h1>
+
+<p>
+    <a asp-action="AddProducer">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProducerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProducerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProducerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProducerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "UpdateProducer", new { id = item.ProducerID }) |
+                @Html.ActionLink("Details", "ProducerDetail", new { id = item.ProducerID }) |
+                @Html.ActionLink("Delete", "DeleteProducer", new { id = item.ProducerID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
