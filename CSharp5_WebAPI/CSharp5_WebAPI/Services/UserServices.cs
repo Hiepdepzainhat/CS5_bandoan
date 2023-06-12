@@ -41,18 +41,19 @@ namespace CSharp5_WebAPI.Services
             return user;
         }
 
-        public async Task<User> PutUser(string id, string name, string username, Guid nationalID,string password, string phonenumber, string address, DateTime dateofbirthday, int sex, string imguser)
+        public async Task<User> PutUser(User u)
         {
-            var users = _context.Users.FirstOrDefault(x => x.UserID == Guid.Parse(id));
-            users.NationalID = nationalID;
-            users.Name = name;
-            users.UserName = username;
-            users.PassWord = password;
-            users.PhoneNumber = phonenumber;
-            users.Address = address;
-            users.DateOfBirth = dateofbirthday;
-            users.Sex = sex;
-            users.ImgUser = imguser;
+            var users = _context.Users.Find(u.UserID);
+            users.NationalID =u.NationalID;
+            users.RoleID = u.RoleID;
+            users.Name = u.Name;
+            users.UserName = u.UserName;
+            users.PassWord = u.PassWord;
+            users.PhoneNumber = u.PhoneNumber;
+            users.Address = u.Address;
+            users.DateOfBirth = u.DateOfBirth;
+            users.Sex = u.Sex;
+            users.ImgUser = u.ImgUser;
             _context.Users.Update(users);
             await _context.SaveChangesAsync();
             return users;
