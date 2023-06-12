@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CSharp5_WebAPI.Services
 {
-    public class UserServices :IUserServices
+    public class UserServices : IUserServices
     {
         private CS5_DbContext _context;
         public UserServices(CS5_DbContext context)
@@ -29,6 +29,11 @@ namespace CSharp5_WebAPI.Services
             return _context.Users.FirstOrDefault(x => x.UserID == Guid.Parse(id));
         }
 
+        public async Task<User> Login(string username, string password)
+        {
+            return await _context.Users.FirstOrDefaultAsync(x => x.UserName == username && x.PassWord == password);
+        }
+
         public async Task<User> PostUser(User user)
         {
             await _context.Users.AddAsync(user);
@@ -36,9 +41,10 @@ namespace CSharp5_WebAPI.Services
             return user;
         }
 
-        public async Task<User> PutUser(string id, string name, string username, string password, string phonenumber, string address, DateTime dateofbirthday, int sex, string imguser)
+        public async Task<User> PutUser(string id, string name, string username, Guid nationalID,string password, string phonenumber, string address, DateTime dateofbirthday, int sex, string imguser)
         {
             var users = _context.Users.FirstOrDefault(x => x.UserID == Guid.Parse(id));
+            users.NationalID = nationalID;
             users.Name = name;
             users.UserName = username;
             users.PassWord = password;

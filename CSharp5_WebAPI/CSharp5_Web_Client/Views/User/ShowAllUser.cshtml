@@ -2,6 +2,10 @@
 
 @{
     ViewData["Title"] = "ShowAllUser";
+    List<string> imageExtension = new List<string>() // list chứa đuôi định dạng của ảnh
+    {
+        ".png", ".jpg", ".jpeg", ".gif", ".tiff", ".pdf", ".webp"
+    };
 }
 
 <h1>ShowAllUser</h1>
@@ -64,7 +68,17 @@
                 @Html.DisplayFor(modelItem => item.Sex)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImgUser)
+                    @{
+                        string extension = System.IO.Path.GetExtension(item.ImgUser);
+                    }
+                    @if (imageExtension.Contains(extension.Trim()))
+                    {
+                        <img src="~/images/@item.ImgUser" height="100px">
+                    }
+                    else
+                    {
+                        <img src="~/images/default.png" height="100px">
+                    }
             </td>
             <td>
                     <a asp-action="EditUser" asp-route-id="@item.UserID">Edit</a> |

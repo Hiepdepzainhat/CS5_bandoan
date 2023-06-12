@@ -27,8 +27,15 @@ namespace CSharp5_Web_Client.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateUser(User r,Cart c)
+        public async Task<IActionResult> CreateUser(User r,Cart c, IFormFile imageFile)
         {
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", imageFile.FileName);
+                var stream = new FileStream(path, FileMode.Create);
+                imageFile.CopyTo(stream);
+                r.ImgUser = imageFile.FileName;
+            }
             string apiURL = $"https://localhost:7149/api/User/PostUser?Name={r.Name}&UserName={r.UserName}&PassWord={r.PassWord}&PhoneNumber={r.PhoneNumber}&Address={r.Address}&DateOfBirth={r.DateOfBirth}&Sex={r.Sex}&ImgUser={r.ImgUser}";
             
 

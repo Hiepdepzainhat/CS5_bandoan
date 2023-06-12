@@ -40,11 +40,12 @@ namespace CSharp5_WebAPI.Controllers
             }
         }
         [HttpPost("[action]")]
-        public async Task<ActionResult<User>> PostUser(string name, string username, string password, string phonenumber, string address, DateTime dateofbirthday, int sex, string imguser)
+        public async Task<ActionResult<User>> PostUser(string name, Guid roleID,Guid nationalID,string username, string password, string phonenumber, string address, DateTime dateofbirthday, int sex, string imguser)
         {
             User user = new User();
             user.UserID = Guid.NewGuid();
-            
+            user.RoleID = roleID;
+            user.NationalID = nationalID;
             user.Name = name;
             user.UserName = username;
             user.PassWord = password;
@@ -75,10 +76,16 @@ namespace CSharp5_WebAPI.Controllers
             await _userSevices.DeleteUser(id);
         }
         [HttpPut("[action]/{id}")]
-        public async Task<ActionResult<Role>> PutUser(string id, string name, string username, string password, string phonenumber, string address, DateTime dateofbirthday, int sex, string imguser)
+        public async Task<ActionResult<User>> PutUser(string id, string name,Guid nationalID, string username, string password, string phonenumber, string address, DateTime dateofbirthday, int sex, string imguser)
         {
-            var p = await _userSevices.PutUser(id, name, username, password, phonenumber,address,dateofbirthday,sex, imguser);
+            var p = await _userSevices.PutUser(id, name, username, nationalID, password, phonenumber,address,dateofbirthday,sex, imguser);
             return Ok(p);
+        }
+        [HttpGet("[action]")]
+        public async Task<ActionResult<User>> Login(string username, string password)
+        {
+            var u = await _userSevices.Login(username, password);
+            return Ok(u);
         }
     }
 }
