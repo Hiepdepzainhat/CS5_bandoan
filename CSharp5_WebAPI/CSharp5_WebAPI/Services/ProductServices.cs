@@ -54,6 +54,7 @@ namespace CSharp5_WebAPI.Services
             products.Price = p.Price;
             products.Status = p.Status;
             products.Desciption = p.Desciption;
+         
 
             _context.Productss.Update(products);
             _context.SaveChanges();
