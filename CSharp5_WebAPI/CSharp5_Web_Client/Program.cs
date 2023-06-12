@@ -7,7 +7,11 @@ builder.Services.AddDbContext<CSharp5_Web_ClientContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(15); // Điều chỉnh thời gian của 1 phiên làm việc (session), nếu k set thời gian thì 1 session sẽ là 20 phút
+}
+);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,11 +26,29 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
-
+/*
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+*/
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapAreaControllerRoute(
+    name: "AdminHome",
+    areaName: "Admin",
+    pattern: "Admin/{controller=AdminHome}/{action=Index}/{id?}"
+    );
+    endpoints.MapAreaControllerRoute(
+    name: "CustomerHome",
+    areaName: "Customer",
+    pattern: "Customer/{controller=CustomerHome}/{action=Index}/{id?}"
+    );
+
+    app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Product}/{action=ShowAllProductsHome}/{id?}");
+});
 
 app.Run();
