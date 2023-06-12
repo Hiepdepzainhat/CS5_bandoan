@@ -76,13 +76,13 @@ namespace CSharp5_Web_Client.Controllers
             }
         }
 
-        [HttpPost]
+
+        /*[HttpPost]
         public async Task<IActionResult> SignUp(SignUpViewModel singup, IFormFile imageFile)
         {
-            if (imageFile != null && imageFile.Length > 0) // kiểm tra file phù hợp : ko null và tránh k có đường dẫn
+            singup.UserID = Guid.NewGuid();
+            if (imageFile != null && imageFile.Length > 0)
             {
-                // Thực hiện việc sao chép ảnh đó vào wwroot
-                // tạo đường dẫn tới thư mục sao chép trong root
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images"
                     , imageFile.FileName); // abc/wwwroot/images/xxx.png
                 var stream = new FileStream(path, FileMode.Create);  // tạo 1 filestream để tạo mới
@@ -135,6 +135,6 @@ namespace CSharp5_Web_Client.Controllers
                     return BadRequest();
                 }
             }
-        }
+        }*/
     }
 }
