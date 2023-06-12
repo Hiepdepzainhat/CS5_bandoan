@@ -6,7 +6,7 @@ namespace CSharp5_WebAPI.IServices
     {
         public Task<IEnumerable<Cart>> GetAllCart();
         public Task<Cart> PostCart(Cart cart);
-        public Task<Cart> PutCart(string id, string Description, int status);
+        public Task<Cart> PutCart(Guid id,Cart cart);
         public Task DeleteCart(string id);
         public Task<Cart> GetCartById(string id);
     }
