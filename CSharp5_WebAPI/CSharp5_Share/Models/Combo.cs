@@ -10,5 +10,7 @@ namespace CSharp5_Share.Models
         public string? ImgCombo { get; set; }
         public int? Price { get; set; }
         public int? Status { get; set; }
+        public virtual List<ComboItems>? ComboItems { get; set; }
+        public virtual ICollection<CartDetail>? CartDetail { get; set; }
     }
 }

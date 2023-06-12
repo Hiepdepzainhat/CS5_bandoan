@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CSharp5_Share.Models.Bill>
+
+@{
+    ViewData["Title"] = "GetBill";
+}
+
+<h1>GetBill</h1>
+
+<p>
+    <a asp-action="AddBill">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BillID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "UpdateBill", new { id=item.BillID }) |
+                @Html.ActionLink("Details", "BillDetail", new { id=item.BillID }) |
+                @Html.ActionLink("Delete", "DeleteBill", new { id=item.BillID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

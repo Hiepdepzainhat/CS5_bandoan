@@ -7,5 +7,6 @@ namespace CSharp5_Share.Models
         [Key]
         public Guid RoleID { get; set; }
         public string? RoleName { get; set; }
+        public virtual IEnumerable<User>? Users { get; set; }
     }
 }

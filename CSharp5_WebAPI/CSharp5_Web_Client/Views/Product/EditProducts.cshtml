@@ -1,0 +1,110 @@
+﻿@using CSharp5_Share.Models;
+@model CSharp5_Share.Models.Products
+
+@{
+    ViewData["Title"] = "EditProducts";
+     var listCategorie =  ViewBag.Categorie as List<Categories>;
+    var listChef =  ViewBag.Chef as List<Chef>;
+    var listProducer =  ViewBag.Producer as List<Producer>;
+}
+
+<h1>EditProducts</h1>
+
+<h4>Products</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditProducts" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryID" for="formFile" class="form-label">Category</label>
+                <select asp-for="CategoryID" class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  @{
+                        foreach (Categories categories in listCategorie)
+                        {
+                            <option value="@categories.CategoryID">@categories.CategoryName</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProducerID" for="formFile" class="form-label">Producer</label>
+                <select asp-for="ProducerID" class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  @{
+                        foreach (Producer p in listProducer)
+                        {
+                            <option value="@p.ProducerID">@p.ProducerName</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChefID" class="control-label">Chef</label>
+                <select asp-for="ChefID" class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  @{
+                        foreach (Chef c in listChef)
+                        {
+                            <option value="@c.ChefID">@c.ChefName</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdVoucher" class="control-label"></label>
+                <input asp-for="IdVoucher" class="form-control" />
+                <span asp-validation-for="IdVoucher" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntryPrice" class="control-label"></label>
+                <input asp-for="EntryPrice" class="form-control" />
+                <span asp-validation-for="EntryPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfManufacture" class="control-label"></label>
+                <input asp-for="DateOfManufacture" class="form-control" />
+                <span asp-validation-for="DateOfManufacture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expired" class="control-label"></label>
+                <input asp-for="Expired" class="form-control" />
+                <span asp-validation-for="Expired" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImPortDate" class="control-label"></label>
+                <input asp-for="ImPortDate" class="form-control" />
+                <span asp-validation-for="ImPortDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="formFile" class="form-label">Chọn ảnh cho sản phẩm</label>
+                <input asp-for="Desciption" class="form-control" type="file" name= "imageFile" accept="image/*">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

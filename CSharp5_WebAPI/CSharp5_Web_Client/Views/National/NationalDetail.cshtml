@@ -1,0 +1,26 @@
+﻿@model CSharp5_Share.Models.National
+
+@{
+    ViewData["Title"] = "NationalDetail";
+}
+
+<h1>NationalDetail</h1>
+
+<div>
+    <h4>National</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NationalID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NationalID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NationalName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NationalName)
+        </dd>
+    </dl>
+</div>

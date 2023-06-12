@@ -6,6 +6,9 @@ namespace CSharp5_Share.Models
     {
         [Key]
         public Guid BillDetailID { get; set; }
+        public Guid? BillID { get; set; }
+        public Guid? ProductID { get; set; }
+        public Guid? ComboID { get; set; }
         public int? Quantity { get; set; }
         public int? Price { get; set; }
         public virtual Bill? Bill { get; set; }

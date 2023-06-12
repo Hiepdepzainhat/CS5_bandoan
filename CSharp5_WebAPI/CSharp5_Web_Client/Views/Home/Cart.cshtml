@@ -1,0 +1,81 @@
+﻿@model CSharp5_Share.Models.Products
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cart</title>
+	<style>
+		.ctner {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			text-align: left;
+			padding: 8px;
+		}
+		tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+		th {
+			background-color: #FFA500	;
+			color: white;
+		}
+		.total {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			padding: 8px;
+			background-color: #f2f2f2;
+			font-weight: bold;
+		}
+		.checkout {
+			background-color: #FFA500	;
+			color: white;
+			border: none;
+			padding: 12px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin-top: 16px;
+			cursor: pointer;
+			border-radius: 4px;
+		}
+	</style>
+</head>
+<div class="ctner"  >
+		<h1>Giỏ hàng</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Name product</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			@*@foreach(var item in Model){*@
+				<tbody>
+					<tr>
+						<td>Áo thun nam</td>
+						<td>200.000 đ</td>
+						<td>2</td>
+						<td>400.000 đ</td>
+					</tr>
+
+				</tbody>
+			@*}*@
+		</table>
+		<div class="total">
+			<span>Total: 1.200.000 đ</span>
+			<p></p>
+		<a class="checkout"asp-area="" asp-controller="Home" asp-action="Pay">Pay</a>
+		</div>
+	</div>
+
+	

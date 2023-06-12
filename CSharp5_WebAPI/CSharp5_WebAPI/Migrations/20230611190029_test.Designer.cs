@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CSharp5_WebAPI.Migrations
 {
     [DbContext(typeof(CS5_DbContext))]
-    [Migration("20230609052246_al")]
-    partial class al
+    [Migration("20230611190029_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,11 +61,14 @@ namespace CSharp5_WebAPI.Migrations
                     b.Property<Guid?>("BillID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ComboID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int?>("Price")
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("ProductsProductID")
+                    b.Property<Guid?>("ProductID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("Quantity")
@@ -76,7 +79,7 @@ namespace CSharp5_WebAPI.Migrations
 
                     b.HasIndex("BillID");
 
-                    b.HasIndex("ProductsProductID");
+                    b.HasIndex("ProductID");
 
                     b.ToTable("BillDetails");
                 });
@@ -89,9 +92,6 @@ namespace CSharp5_WebAPI.Migrations
                     b.Property<string>("Desciption")
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int");
-
                     b.HasKey("UserID");
 
                     b.ToTable("Carts");
@@ -103,9 +103,6 @@ namespace CSharp5_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CartUserID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("ComboID")
                         .HasColumnType("uniqueidentifier");
 
@@ -113,7 +110,7 @@ namespace CSharp5_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("ProductsProductID")
+                    b.Property<Guid?>("ProductID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("Quantity")
@@ -124,13 +121,16 @@ namespace CSharp5_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.HasKey("CDID");
+                    b.Property<Guid?>("UserID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasIndex("CartUserID");
+                    b.HasKey("CDID");
 
                     b.HasIndex("ComboID");
 
-                    b.HasIndex("ProductsProductID");
+                    b.HasIndex("ProductID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("CartDetails");
                 });
@@ -211,14 +211,14 @@ namespace CSharp5_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("ProductsProductID")
+                    b.Property<Guid?>("ProductID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ComboItemID");
 
                     b.HasIndex("ComboID");
 
-                    b.HasIndex("ProductsProductID");
+                    b.HasIndex("ProductID");
 
                     b.ToTable("ComboItems");
                 });
@@ -287,7 +287,7 @@ namespace CSharp5_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CategoriesCategoryID")
+                    b.Property<Guid?>("CategoryID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ChefID")
@@ -307,6 +307,9 @@ namespace CSharp5_WebAPI.Migrations
                     b.Property<DateTime?>("Expired")
                         .IsRequired()
                         .HasColumnType("Date");
+
+                    b.Property<Guid?>("IdVoucher")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ImPortDate")
                         .IsRequired()
@@ -331,18 +334,15 @@ namespace CSharp5_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("VouchervaVoucherID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("ProductID");
 
-                    b.HasIndex("CategoriesCategoryID");
+                    b.HasIndex("CategoryID");
 
                     b.HasIndex("ChefID");
 
-                    b.HasIndex("ProducerID");
+                    b.HasIndex("IdVoucher");
 
-                    b.HasIndex("VouchervaVoucherID");
+                    b.HasIndex("ProducerID");
 
                     b.ToTable("Productss");
                 });
@@ -436,7 +436,7 @@ namespace CSharp5_WebAPI.Migrations
             modelBuilder.Entity("CSharp5_Share.Models.Bill", b =>
                 {
                     b.HasOne("CSharp5_Share.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Bills")
                         .HasForeignKey("UserID");
 
                     b.Navigation("User");
@@ -445,12 +445,12 @@ namespace CSharp5_WebAPI.Migrations
             modelBuilder.Entity("CSharp5_Share.Models.BillDetail", b =>
                 {
                     b.HasOne("CSharp5_Share.Models.Bill", "Bill")
-                        .WithMany()
+                        .WithMany("BillDetail")
                         .HasForeignKey("BillID");
 
                     b.HasOne("CSharp5_Share.Models.Products", "Products")
-                        .WithMany()
-                        .HasForeignKey("ProductsProductID");
+                        .WithMany("BillDetails")
+                        .HasForeignKey("ProductID");
 
                     b.Navigation("Bill");
 
@@ -470,17 +470,17 @@ namespace CSharp5_WebAPI.Migrations
 
             modelBuilder.Entity("CSharp5_Share.Models.CartDetail", b =>
                 {
-                    b.HasOne("CSharp5_Share.Models.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartUserID");
-
                     b.HasOne("CSharp5_Share.Models.Combo", "Combo")
-                        .WithMany()
+                        .WithMany("CartDetail")
                         .HasForeignKey("ComboID");
 
                     b.HasOne("CSharp5_Share.Models.Products", "Products")
-                        .WithMany()
-                        .HasForeignKey("ProductsProductID");
+                        .WithMany("CartDetails")
+                        .HasForeignKey("ProductID");
+
+                    b.HasOne("CSharp5_Share.Models.Cart", "Cart")
+                        .WithMany("CartDetails")
+                        .HasForeignKey("UserID");
 
                     b.Navigation("Cart");
 
@@ -492,12 +492,12 @@ namespace CSharp5_WebAPI.Migrations
             modelBuilder.Entity("CSharp5_Share.Models.ComboItems", b =>
                 {
                     b.HasOne("CSharp5_Share.Models.Combo", "Combo")
-                        .WithMany()
+                        .WithMany("ComboItems")
                         .HasForeignKey("ComboID");
 
                     b.HasOne("CSharp5_Share.Models.Products", "Products")
-                        .WithMany()
-                        .HasForeignKey("ProductsProductID");
+                        .WithMany("ComboItems")
+                        .HasForeignKey("ProductID");
 
                     b.Navigation("Combo");
 
@@ -507,20 +507,20 @@ namespace CSharp5_WebAPI.Migrations
             modelBuilder.Entity("CSharp5_Share.Models.Products", b =>
                 {
                     b.HasOne("CSharp5_Share.Models.Categories", "Categories")
-                        .WithMany()
-                        .HasForeignKey("CategoriesCategoryID");
+                        .WithMany("Productss")
+                        .HasForeignKey("CategoryID");
 
                     b.HasOne("CSharp5_Share.Models.Chef", "Chef")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("ChefID");
 
-                    b.HasOne("CSharp5_Share.Models.Producer", "Producer")
-                        .WithMany()
-                        .HasForeignKey("ProducerID");
+                    b.HasOne("CSharp5_Share.Models.Voucher", "Voucher")
+                        .WithMany("Productss")
+                        .HasForeignKey("IdVoucher");
 
-                    b.HasOne("CSharp5_Share.Models.Voucher", "Voucherva")
-                        .WithMany()
-                        .HasForeignKey("VouchervaVoucherID");
+                    b.HasOne("CSharp5_Share.Models.Producer", "Producer")
+                        .WithMany("Productss")
+                        .HasForeignKey("ProducerID");
 
                     b.Navigation("Categories");
 
@@ -528,17 +528,17 @@ namespace CSharp5_WebAPI.Migrations
 
                     b.Navigation("Producer");
 
-                    b.Navigation("Voucherva");
+                    b.Navigation("Voucher");
                 });
 
             modelBuilder.Entity("CSharp5_Share.Models.User", b =>
                 {
                     b.HasOne("CSharp5_Share.Models.National", "National")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("NationalID");
 
                     b.HasOne("CSharp5_Share.Models.Role", "Role")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("RoleID");
 
                     b.Navigation("National");
@@ -546,9 +546,67 @@ namespace CSharp5_WebAPI.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("CSharp5_Share.Models.Bill", b =>
+                {
+                    b.Navigation("BillDetail");
+                });
+
+            modelBuilder.Entity("CSharp5_Share.Models.Cart", b =>
+                {
+                    b.Navigation("CartDetails");
+                });
+
+            modelBuilder.Entity("CSharp5_Share.Models.Categories", b =>
+                {
+                    b.Navigation("Productss");
+                });
+
+            modelBuilder.Entity("CSharp5_Share.Models.Chef", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("CSharp5_Share.Models.Combo", b =>
+                {
+                    b.Navigation("CartDetail");
+
+                    b.Navigation("ComboItems");
+                });
+
+            modelBuilder.Entity("CSharp5_Share.Models.National", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("CSharp5_Share.Models.Producer", b =>
+                {
+                    b.Navigation("Productss");
+                });
+
+            modelBuilder.Entity("CSharp5_Share.Models.Products", b =>
+                {
+                    b.Navigation("BillDetails");
+
+                    b.Navigation("CartDetails");
+
+                    b.Navigation("ComboItems");
+                });
+
+            modelBuilder.Entity("CSharp5_Share.Models.Role", b =>
+                {
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("CSharp5_Share.Models.User", b =>
                 {
+                    b.Navigation("Bills");
+
                     b.Navigation("Cart");
+                });
+
+            modelBuilder.Entity("CSharp5_Share.Models.Voucher", b =>
+                {
+                    b.Navigation("Productss");
                 });
 #pragma warning restore 612, 618
         }
